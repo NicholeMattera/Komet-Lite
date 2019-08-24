@@ -36,12 +36,11 @@ class Lockdown(Cog):
             channel = ctx.channel
         log_channel = self.bot.get_channel(config.log_channel)
 
+        roles = config.lockdown_configs["default"]["roles"]
+
         for key, lockdown_conf in config.lockdown_configs.items():
             if channel.id in lockdown_conf["channels"]:
                 roles = lockdown_conf["roles"]
-
-        if roles is None:
-            roles = config.lockdown_configs["default"]["roles"]
 
         for role in roles:
             await self.set_sendmessage(channel, role, False, ctx.author)
