@@ -53,15 +53,14 @@ class Meme(Cog):
         await ctx.send(f"{user.mention} gets a :star:, yay!")
 
     @commands.check(check_if_staff_or_ot)
-    @commands.command(hidden=True, aliases=["reswitchedsilver", "silv3r",
-                                            "reswitchedsilv3r"])
+    @commands.command(hidden=True, aliases=["atlassilver", "silv3r",
+                                            "atlassilv3r"])
     async def silver(self, ctx, user: discord.Member):
-        """Gives a user ReSwitched Silver™"""
-        embed = discord.Embed(title="ReSwitched Silver™!",
-                              description=f"Here's your ReSwitched Silver™,"
+        """Gives a user AtlasNX Silver™"""
+        embed = discord.Embed(title="AtlasNX Silver™!",
+                              description=f"Here's your AtlasNX Silver™,"
                                           f"{user.mention}!")
-        embed.set_image(url="https://cdn.discordapp.com/emojis/"
-                                "548623626916724747.png?v=1")
+        embed.set_image(url="https://cdn.discordapp.com/emojis/629188608732954635.png?v=1")
         await ctx.send(embed=embed)
 
     @commands.check(check_if_staff_or_ot)
@@ -134,6 +133,11 @@ class Meme(Cog):
         """Yeet"""
         await ctx.send("🅱or 🅱irated 🅱shop-🅱ames 🅱ou 🅱eed 🅱S 🅱ignature 🅱atches. 🅱s 🅱heir 🅱nly 🅱urpose 🅱s 🅱o 🅱llow 🅱iracy 🅱e\'re 🅱ot 🅱roviding 🅱ny 🅱elp 🅱ith 🅱nstallation 🅱f 🅱aid 🅱atches 🅱r 🅱irated 🅱ames 🅱fterwards")
         
+    @commands.check(check_if_staff_or_kek)
+    @commands.command(hidden=True, aliases=['toilet'])
+    async def flush(self, ctx, target: discord.Member):
+        """Flushes Tyler"""
+        await ctx.send(random.choice([f"thats a bit rude, {safe_name}", f"wait no, dont shower {safe_name}. youll die", "i think i might have done that drug before, not sure tho"]))
 
 
 def setup(bot):
