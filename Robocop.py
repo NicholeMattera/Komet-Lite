@@ -59,9 +59,7 @@ initial_extensions = ['cogs.common',
                       'cogs.links',
                       'cogs.remind',
                       'cogs.robocronp',
-                      'cogs.meme',
-                      'cogs.pin',
-                      'cogs.invites']
+                      'cogs.meme']
 
 bot = commands.Bot(command_prefix=get_prefix,
                    description=config.bot_description, pm_help=True)
@@ -207,4 +205,4 @@ for wanted_json in wanted_jsons:
         with open(wanted_json, "w") as f:
             f.write("{}")
 
-bot.run(config.token, bot=True, reconnect=True, loop=bot.loop)
+bot.run(config.token, bot=True, reconnect=True)
