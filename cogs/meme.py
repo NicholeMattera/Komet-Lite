@@ -137,7 +137,7 @@ class Meme(Cog):
     @commands.command(hidden=True, aliases=['toilet'])
     async def flush(self, ctx, target: discord.Member):
         """Flushes Lucy uwu"""
-        safe_name = await commands.clean_content().convert(ctx, str(target))
+        safe_name = target.display_name
         await ctx.send(random.choice([f"thats a bit rude, {safe_name}", f"wait no, dont shower {safe_name}. youll die", "i think i might have done that drug before, not sure tho"]))
 
 
