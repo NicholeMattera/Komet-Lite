@@ -261,12 +261,12 @@ class Mod(Cog):
     async def approve(self, ctx, target: discord.Member,
                       role: str = config.default_named_role):
         """Add a role to a user (default: config.default_named_role), staff only."""
-        if target.id == 200968036151328769:
-            return await ctx.send(f"{target.display_name} doesn't get creport")
-        
         if role not in config.named_roles:
             return await ctx.send("No such role! Available roles: " +
                                   ','.join(config.named_roles))
+        
+        if target.id == 200968036151328769 and confg.named_roles[role] == 594592298763943977:
+            return await ctx.send(f"{target.display_name} doesn't get {role}")
 
         log_channel = self.bot.get_channel(config.log_channel)
         target_role = ctx.guild.get_role(config.named_roles[role])
