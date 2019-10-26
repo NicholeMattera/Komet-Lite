@@ -265,7 +265,7 @@ class Mod(Cog):
             return await ctx.send("No such role! Available roles: " +
                                   ','.join(config.named_roles))
         
-        if target.id == 200968036151328769 and confg.named_roles[role] == 594592298763943977:
+        if target.id == 200968036151328769 and config.named_roles[role] == 594592298763943977:
             return await ctx.send(f"{target.display_name} doesn't get {role}")
 
         log_channel = self.bot.get_channel(config.log_channel)
