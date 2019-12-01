@@ -20,7 +20,7 @@ class Basic(Cog):
 
     @commands.command()
     async def exfat(self, ctx):
-        """Yeet"""
+        """Displays a help message relating to nintendos crappy exFat driver"""
         await ctx.send("Nintendo's exFat driver has been known to corrupt exFat filesystems and homebrew only exacerbates this problem. Please use guiformat ( http://www.ridgecrop.demon.co.uk/index.htm?guiformat.htm ) to format your sdcard as fat32.")
         
     @commands.guild_only()
