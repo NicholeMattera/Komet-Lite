@@ -14,7 +14,7 @@ class ModUserlog(Cog):
     def get_userlog_embed_for_id(self, uid: str, name: str, own: bool = False,
                                  event=""):
         own_note = " Good for you!" if own else ""
-        wanted_events = ["warns", "bans", "kicks", "mutes"]
+        wanted_events = ["warns", "bans", "kicks", "mutes", "notes"]
         if event and not isinstance(event, list):
             wanted_events = [event]
         embed = discord.Embed(color=discord.Color.dark_red())
