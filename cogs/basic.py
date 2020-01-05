@@ -27,10 +27,10 @@ class Basic(Cog):
         message_text=("The exFAT drivers built into the Switch has been known "
                       "to corrupt SD cards and homebrew only makes this worse. "
                       "Backup everything on your SD card as soon as possible "
-                      "and format your SD card to FAT32. On Windows, if your "
-                      "SD card is over 32GB then it will not let you select "
-                      "FAT32 from the built-in format tool, however you can "
-                      "use a tool like GUIFormat to format your it to FAT32.")
+                      "and format it to FAT32. On Windows, if your SD card is "
+                      "over 32GB then it will not let you select FAT32 from "
+                      "the built-in format tool, however you can use a tool "
+                      "like GUIFormat to format it.")
         await ctx.send(content=message_text,
                        embed=embed)
         
