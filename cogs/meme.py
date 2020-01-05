@@ -5,6 +5,7 @@ from discord.ext.commands import Cog
 import math
 import platform
 from helpers.checks import check_if_staff_or_ot
+from helpers.checks import check_if_staff
 
 
 class Meme(Cog):
