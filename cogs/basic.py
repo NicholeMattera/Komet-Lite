@@ -17,6 +17,11 @@ class Basic(Cog):
     async def patches(self, ctx):
         """Yeet"""
         await ctx.send("For pirated eshop-games you need ES signature patches. As their only purpose is to allow piracy we\'re not providing any help with installation of said patches or pirated games afterwards")
+
+    @commands.command(aliases=["fat32"])
+    async def exfat(self, ctx):
+        """Displays a help message relating to nintendos crappy exFat driver"""
+        await ctx.send("Nintendo's exFat driver has been known to corrupt exFat filesystems and homebrew only makes this problem worse. Please use guiformat ( http://www.ridgecrop.demon.co.uk/index.htm?guiformat.htm ) to format your sdcard as fat32.")
         
     @commands.guild_only()
     @commands.command()
