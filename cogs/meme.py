@@ -5,7 +5,6 @@ from discord.ext.commands import Cog
 import math
 import platform
 from helpers.checks import check_if_staff_or_ot
-from helpers.checks import check_if_staff_or_kek
 
 
 class Meme(Cog):
@@ -127,13 +126,13 @@ class Meme(Cog):
         """test"""
         await ctx.send("https://www.youtube.com/watch?v=VmarNEsjpDI")
     
-    @commands.check(check_if_staff_or_kek)
+    @commands.check(check_if_staff)
     @commands.command(hidden=True, aliases=['bs', "biracy", ":b:iracy", "🅱iracy"])
     async def batches(self, ctx):
         """Yeet"""
         await ctx.send("🅱or 🅱irated 🅱shop-🅱ames 🅱ou 🅱eed 🅱S 🅱ignature 🅱atches. 🅱s 🅱heir 🅱nly 🅱urpose 🅱s 🅱o 🅱llow 🅱iracy 🅱e\'re 🅱ot 🅱roviding 🅱ny 🅱elp 🅱ith 🅱nstallation 🅱f 🅱aid 🅱atches 🅱r 🅱irated 🅱ames 🅱fterwards")
         
-    @commands.check(check_if_staff_or_kek)
+    @commands.check(check_if_staff)
     @commands.command(hidden=True, aliases=['toilet'])
     async def flush(self, ctx, target: discord.Member):
         """Flushes Lucy uwu"""
