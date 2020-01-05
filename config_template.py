@@ -56,6 +56,8 @@ modlog_channel = 542114169244221452  # mod-logs channel in ReSwitched
 spylog_channel = 548304839294189579  # spy channel in ReSwitched
 welcome_channel = 326416669058662401  # newcomers channel in ReSwitched
 
+support_faq_channel = 628596855470555167  # support-faq channel in AtlasNX
+
 # These channel entries are used to determine which roles will be given
 # access when we unmute on them
 general_channels = [420029476634886144,

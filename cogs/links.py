@@ -34,24 +34,35 @@ class Links(Cog):
     @commands.command(hidden=True, aliases=["guides", "link"])
     async def guide(self, ctx):
         """Link to the guide(s)"""
-        await ctx.send("**Generic starter guides:**\n"
-                       "AtlasNX's Guide: "
-                       "<https://guide.teamatlasnx.com>\n"
-                       "\n"
-                       "**Specific guides:**\n"
-                       "Manually Updating/Downgrading (with HOS): "
-                       "<https://guide.sdsetup.com/usingcfw/manualupgrade>\n"
-                       "Manually Repairing/Downgrading (without HOS): "
-                       "<https://guide.sdsetup.com/usingcfw/manualchoiupgrade>\n"
-                       "Setting up EmuMMC: "
-                       "<https://github.com/AtlasNX/emuMMC-Guides>\n"
-                       "How to get started developing Homebrew: "
-                       "<https://gbatemp.net/threads/"
-                       "tutorial-switch-homebrew-development.507284/>\n"
-                       "Getting full RAM in homebrew without NSPs: "
-                       "as of Atmosphere 0.8.6, hold R while opening any game.\n"
-                       "\n"
-                       "Check out #support-faq for additional help.")
+
+        message_text=("**Generic starter guides:**\n"
+                      "AtlasNX's Guide: "
+                      "<https://guide.teamatlasnx.com>\n"
+                      "\n"
+                      "**Specific guides:**\n"
+                      "Manually Updating/Downgrading (with HOS): "
+                      "<https://guide.sdsetup.com/usingcfw/manualupgrade>\n"
+                      "Manually Repairing/Downgrading (without HOS): "
+                      "<https://guide.sdsetup.com/usingcfw/manualchoiupgrade>\n"
+                      "Setting up EmuMMC: "
+                      "<https://github.com/AtlasNX/emuMMC-Guides>\n"
+                      "How to get started developing Homebrew: "
+                      "<https://gbatemp.net/threads/"
+                      "tutorial-switch-homebrew-development.507284/>\n"
+                      "Getting full RAM in homebrew without NSPs: "
+                      "As of Atmosphere 0.8.6, hold R while opening any game.\n"
+                      "\n")
+
+        try:
+            support_faq_channel = self.bot.get_channel(config.support_faq_channel)
+            if support_faq_channel is None:
+                message_text += "Check out #support-faq for additional help."
+            else:
+                message_text += f"Check out #{support_faq_channel.mention} for additional help."
+        except AttributeError:
+            message_text += "Check out #support-faq for additional help."
+        
+        await ctx.send(message_text)
 
     @commands.command(hidden=True, aliases=["patron"])
     async def patreon(self, ctx):
