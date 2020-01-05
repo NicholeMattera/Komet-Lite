@@ -43,11 +43,15 @@ class Links(Cog):
                        "<https://guide.sdsetup.com/usingcfw/manualupgrade>\n"
                        "Manually Repairing/Downgrading (without HOS): "
                        "<https://guide.sdsetup.com/usingcfw/manualchoiupgrade>\n"
+                       "Setting up EmuMMC: "
+                       "<https://github.com/AtlasNX/emuMMC-Guides>\n"
                        "How to get started developing Homebrew: "
                        "<https://gbatemp.net/threads/"
                        "tutorial-switch-homebrew-development.507284/>\n"
                        "Getting full RAM in homebrew without NSPs: "
-                       "as of Atmosphere 0.8.6, hold R while opening any game.")
+                       "as of Atmosphere 0.8.6, hold R while opening any game.\n"
+                       "\n"
+                       "Check out #support-faq for additional help.")
 
     @commands.command(hidden=True, aliases=["patron"])
     async def patreon(self, ctx):
