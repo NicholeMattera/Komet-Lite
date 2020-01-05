@@ -20,8 +20,19 @@ class Basic(Cog):
 
     @commands.command(aliases=["fat32"])
     async def exfat(self, ctx):
-        """Displays a help message relating to nintendos crappy exFat driver"""
-        await ctx.send("Nintendo's exFat driver has been known to corrupt exFat filesystems and homebrew only makes this problem worse. Please use guiformat ( http://www.ridgecrop.demon.co.uk/index.htm?guiformat.htm ) to format your sdcard as fat32.")
+        """Displays a helpful message on why not to use exFAT"""
+        embed = discord.Embed(title="GUIFormat",
+                              url="http://www.ridgecrop.demon.co.uk/guiformat.exe",
+                              description="A useful tool for formatting SD cards over 32GB as FAT32 on Windows.")
+        message_text="The exFAT drivers built into the Switch has been known "
+                     "to corrupt SD cards and homebrew only makes this worse. "
+                     "Backup everything on your SD card as soon as possible "
+                     "and format your SD card to FAT32. On Windows, if your "
+                     "SD card is over 32GB then it will not let you select "
+                     "FAT32 from the built-in format tool, however you can "
+                     "use a tool like GUIFormat to format your it to FAT32."
+        await ctx.send(content=message_text,
+                       embed=embed)
         
     @commands.guild_only()
     @commands.command()
