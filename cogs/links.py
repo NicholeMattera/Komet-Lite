@@ -58,7 +58,7 @@ class Links(Cog):
             if support_faq_channel is None:
                 message_text += "Check out #support-faq for additional help."
             else:
-                message_text += f"Check out #{support_faq_channel.mention} for additional help."
+                message_text += f"Check out {support_faq_channel.mention} for additional help."
         except AttributeError:
             message_text += "Check out #support-faq for additional help."
         
