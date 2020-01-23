@@ -71,12 +71,12 @@ class Links(Cog):
 
     @commands.command(hidden=True, aliases=["sdfiles"])
     async def kosmos(self, ctx):
-        """Link to the Atmosphere repo"""
-        await ctx.send("https://github.com/atlasnx/kosmos")
+        """Link to the latest Kosmos release"""
+        await ctx.send("https://github.com/AtlasNX/Kosmos/releases/latest")
 
     @commands.command(hidden=True, aliases=["sd"])
     async def sdsetup(self, ctx):
-        """Link to the Atmosphere repo"""
+        """Link to SD Setup"""
         await ctx.send("https://sdsetup.com")
 
     @commands.command()
