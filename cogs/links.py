@@ -44,13 +44,14 @@ class Links(Cog):
                       "<https://guide.sdsetup.com/usingcfw/manualupgrade>\n"
                       "Manually Repairing/Downgrading (without HOS): "
                       "<https://guide.sdsetup.com/usingcfw/manualchoiupgrade>\n"
-                      "Setting up EmuMMC: "
-                      "<https://github.com/AtlasNX/emuMMC-Guides>\n"
+                      "Setting up EmuMMC (Windows): "
+                      "<https://switch.homebrew.guide/emummc/windows>\n"
+                      "Setting up EmuMMC (Linux): "
+                      "<https://switch.homebrew.guide/emummc/linux>\n"
+                      "Setting up EmuMMC (Mac): "
+                      "<https://switch.homebrew.guide/emummc/mac>\n"
                       "How to get started developing Homebrew: "
-                      "<https://gbatemp.net/threads/"
-                      "tutorial-switch-homebrew-development.507284/>\n"
-                      "Getting full RAM in homebrew without NSPs: "
-                      "As of Atmosphere 0.8.6, hold R while opening any game.\n"
+                      "<https://switch.homebrew.guide/homebrew_dev/introduction>\n"
                       "\n")
 
         try:
