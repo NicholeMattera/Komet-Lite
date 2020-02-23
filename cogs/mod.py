@@ -6,7 +6,9 @@ from helpers.checks import check_if_staff, check_if_bot_manager
 from helpers.userlogs import userlog
 from helpers.restrictions import add_restriction, remove_restriction
 import io
-
+from typing import Optional
+import json
+from datetime import timezone
 
 class Mod(Cog):
     def __init__(self, bot):
@@ -442,6 +444,53 @@ class Mod(Cog):
 
         await ctx.send("Successfully set bot nickname.")
 
+
+    async def _getdms(self, target: discord.Member, limit: Optional[int] = None):
+        channel = target.dm_channel
+        if channel == None:
+            channel = await target.create_dm()
+        
+        messages = []
+        async for message in channel.history(limit = None, oldest_first = True):
+            messages.append({
+                'author': f'{message.author.name} ({message.author.id})',
+                'content': message.content,
+                'datetime': message.created_at.replace(tzinfo = timezone.utc).timestamp()
+            })
+
+        if len(messages) == 0:
+            return ''
+
+        return json.dumps(messages)
+
+    @commands.guild_only()
+    @commands.check(check_if_staff)
+    @commands.command()
+    async def getdms(self, ctx, target: discord.Member, limit: Optional[int] = None):
+        """Gets all direct messages the user has had with Komet."""
+
+        dms = await self._getdms(target, limit)
+        if dms == '':
+            await ctx.send('User has no DMs with Komet.')
+            return
+
+        file = discord.File(io.BytesIO(dms.encode('utf-8')), filename = f'{target.id}.json')
+        await ctx.send(file = file)
+
+    @commands.guild_only()
+    @commands.check(check_if_staff)
+    @commands.command()
+    async def getdmsid(self, ctx, user_id: int, limit: Optional[int] = None):
+        """Gets all direct messages the user has had with Komet."""
+
+        target = ctx.guild.get_member(user_id)
+        dms = await self._getdms(target, limit)
+        if dms == '':
+            await ctx.send('User has no DMs with Komet.')
+            return
+
+        file = discord.File(io.BytesIO(dms.encode('utf-8')), filename = f'{user_id}.json')
+        await ctx.send(file = file)
 
 def setup(bot):
     bot.add_cog(Mod(bot))
