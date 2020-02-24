@@ -57,6 +57,7 @@ spylog_channel = 548304839294189579  # spy channel in ReSwitched
 welcome_channel = 326416669058662401  # newcomers channel in ReSwitched
 
 support_faq_channel = 628596855470555167  # support-faq channel in AtlasNX
+list_files_channel = 680792242188845079 # Used for uploading raw text files for list editing.
 
 # These channel entries are used to determine which roles will be given
 # access when we unmute on them
@@ -71,6 +72,10 @@ community_channels = [269333940928512010,
                       404722395845361668,
                       435687501068501002,
                       286612533757083648]  # Channels requiring community role
+
+# Channels that are lists that are controlled by the lists cog.
+list_channels = [680129341958783086,
+                 680129375705890839]
 
 # Controls which roles are blocked during lockdown
 lockdown_configs = {
