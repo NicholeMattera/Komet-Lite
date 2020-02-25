@@ -2,6 +2,7 @@ import config
 import discord
 import io
 import urllib.parse
+from discord.ext import commands
 from discord.ext.commands import Cog
 
 class Lists(Cog):
@@ -83,6 +84,22 @@ class Lists(Cog):
                 await file_message.delete()
         
         await message.edit(embed = None)
+
+    # Commands
+
+    @commands.command(aliases = ["list"])
+    async def listitem(self, ctx, channel: discord.TextChannel, item: int):
+        """Link to a specific list item."""
+
+        counter = 0
+        async for message in channel.history(limit = None, oldest_first = True):
+            if message.content.strip():
+                counter += 1
+
+            if counter == item:
+                await ctx.send(f"Here is #{item} in {channel.mention}: {message.jump_url}")
+                return
+
 
     # Listeners
 
