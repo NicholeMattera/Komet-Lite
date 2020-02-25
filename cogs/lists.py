@@ -86,6 +86,9 @@ class Lists(Cog):
         await message.edit(embed = None)
 
     async def link_list_item(self, ctx, channel: discord.TextChannel, number: int):
+        if number <= 0:
+            await ctx.send(f'Number must be greater than 0.')
+
         if channel.id not in config.list_channels:
             await ctx.send(f'{channel.mention} is not a list channel.')
             return
