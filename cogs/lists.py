@@ -85,12 +85,7 @@ class Lists(Cog):
         
         await message.edit(embed = None)
 
-    # Commands
-
-    @commands.command(aliases = ['list'])
-    async def listitem(self, ctx, channel: discord.TextChannel, number: int):
-        """Link to a specific list item."""
-
+    async def link_list_item(self, ctx, channel: discord.TextChannel, number: int):
         if channel.id not in config.list_channels:
             await ctx.send(f'{channel.mention} is not a list channel.')
             return
@@ -112,19 +107,24 @@ class Lists(Cog):
                 )
                 return
 
+    # Commands
+
+    @commands.command(aliases = ['list'])
+    async def listitem(self, ctx, channel: discord.TextChannel, number: int):
+        """Link to a specific list item."""
+        await self.link_list_item(ctx, channel, number)
+
     @commands.command()
     async def rules(self, ctx, number: int):
         """Link to a specific list item in #rules"""
-        
         channel = ctx.guild.get_channel(config.rules_channel)
-        await self.listitem(ctx, channel, number)
+        await self.link_list_item(ctx, channel, number)
 
-    @commands.command()
+    @commands.command(aliases = ['faq'])
     async def support(self, ctx, number: int):
         """Link to a specific list item in #support-faq"""
-        
         channel = ctx.guild.get_channel(config.support_faq_channel)
-        await self.listitem(ctx, channel, number)
+        await self.link_list_item(ctx, channel, number)
 
 
     # Listeners
