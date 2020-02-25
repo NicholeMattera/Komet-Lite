@@ -107,6 +107,8 @@ class Lists(Cog):
                 )
                 return
 
+        await ctx.send(f'Unable to find item #{number} in {channel.mention}.')
+
     # Commands
 
     @commands.command(aliases = ['list'])
