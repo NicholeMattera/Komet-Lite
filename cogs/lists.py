@@ -121,7 +121,7 @@ class Lists(Cog):
         """Link to a specific list item."""
         await self.link_list_item(ctx, channel, number)
 
-    @commands.command()
+    @commands.command(aliases = ["rule"])
     async def rules(self, ctx, number: int):
         """Link to a specific list item in #rules"""
         channel = ctx.guild.get_channel(config.rules_channel)
