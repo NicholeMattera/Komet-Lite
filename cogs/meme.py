@@ -157,8 +157,6 @@ class Meme(Cog):
         safe_name = target.display_name
         await ctx.send(random.choice([f"thats a bit rude, {safe_name}", f"wait no, dont shower {safe_name}. youll die", "i think i might have done that drug before, not sure tho"]))
 
-
-    @commands.check(check_if_staff)
     @commands.command(hidden=True, aliases=['sponge'])
     async def spongebob(self, ctx, *, message: str):
         text = "**" + ctx.author.name + "** "
