@@ -158,5 +158,25 @@ class Meme(Cog):
         await ctx.send(random.choice([f"thats a bit rude, {safe_name}", f"wait no, dont shower {safe_name}. youll die", "i think i might have done that drug before, not sure tho"]))
 
 
+    @commands.check(check_if_staff)
+    @commands.command(hidden=True, aliases=['sponge'])
+    async def spongebob(self, ctx, *, message: str):
+        text = "**" + ctx.author.name + "** "
+
+        caps = False
+        for char in message:
+            if caps:
+                text = text + char.upper()
+            else:
+                text = text + char.lower()
+
+            if char != " ":
+                caps = not caps
+
+        text += " <:spongebob:686908029874077716>"
+
+        await ctx.message.delete()
+        await ctx.send(text)
+        
 def setup(bot):
     bot.add_cog(Meme(bot))
