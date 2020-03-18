@@ -306,6 +306,48 @@ class Logs(Cog):
                   f"{self.bot.escape_message(member_after)}{msg}"
             await log_channel.send(msg)
 
+    async def report_reaction(self, payload, added):
+        await self.bot.wait_until_ready()
+        channel = self.bot.get_channel(payload.channel_id)
+        message = await channel.fetch_message(payload.message_id)
+        member = channel.guild.get_member(payload.user_id)
+        emoji = payload.emoji
+        
+        # Don't log reactions from bots.
+        if message.author.bot:
+            return
+            
+        # Don't log reactions from staff.
+        if any(r.id in config.staff_role_ids for r in member.roles):
+            return
+
+        log_channel = self.bot.get_channel(config.log_channel)
+        msg = ""
+        
+        if added:
+            msg += "❤️ **Reaction added**: \n"
+        else:
+            msg += "💔 **Reaction removed**: \n"
+
+        msg += f"By {self.bot.escape_message(member.name)} "\
+            f"({member.id}), in {channel.mention}:\n"
+
+        if emoji.is_unicode_emoji():
+            msg += f"{emoji.name} on {message.jump_url}"
+
+        else:
+            msg += f"{self.bot.escape_message(emoji.name)} "\
+                f"({emoji.url}) on {message.jump_url}"
+
+        await log_channel.send(msg)
+
+    @Cog.listener()
+    async def on_raw_reaction_add(self, payload):
+        await self.report_reaction(payload, True)
+
+    @Cog.listener()
+    async def on_raw_reaction_remove(self, payload):
+        await self.report_reaction(payload, False)
 
 def setup(bot):
     bot.add_cog(Logs(bot))
