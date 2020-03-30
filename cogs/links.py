@@ -68,7 +68,12 @@ class Links(Cog):
     @commands.command(hidden=True, aliases=["patron"])
     async def patreon(self, ctx):
         """Link to the patreon"""
-        await ctx.send("https://patreon.teamatlasnx.com")    
+        await ctx.send("https://patreon.teamatlasnx.com")
+
+    @commands.command(hidden=True, aliases=["coffee"])
+    async def kofi(self, ctx):
+        """Link to Ko-fi"""
+        await ctx.send("https://kofi.teamatlasnx.com")
 
     @commands.command(hidden=True, aliases=["sdfiles"])
     async def kosmos(self, ctx):
