@@ -436,7 +436,7 @@ class Mod(Cog):
         """Sets the bot's currently listening activity, staff only.
 
         Just send .listening to wipe the activity."""
-        if game:
+        if music:
             await self.bot.change_presence(activity=discord.Activity(name=music, type=discord.ActivityType.listening))
         else:
             await self.bot.change_presence(activity=None)
@@ -450,7 +450,7 @@ class Mod(Cog):
         """Sets the bot's currently watching activity, staff only.
 
         Just send .watching to wipe the activity."""
-        if game:
+        if video:
             await self.bot.change_presence(activity=discord.Activity(name=video, type=discord.ActivityType.watching))
         else:
             await self.bot.change_presence(activity=None)
