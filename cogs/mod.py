@@ -431,6 +431,48 @@ class Mod(Cog):
 
     @commands.guild_only()
     @commands.check(check_if_staff)
+    @commands.command(aliases=["setlistening", "setmusic"])
+    async def listening(self, ctx, *, music: str = ""):
+        """Sets the bot's currently listening activity, staff only.
+
+        Just send .listening to wipe the activity."""
+        if game:
+            await self.bot.change_presence(activity=discord.Activity(name=music, type=discord.ActivityType.listening))
+        else:
+            await self.bot.change_presence(activity=None)
+
+        await ctx.send("Successfully set music.")
+
+    @commands.guild_only()
+    @commands.check(check_if_staff)
+    @commands.command(aliases=["setwatching", "setvideo"])
+    async def watching(self, ctx, *, video: str = ""):
+        """Sets the bot's currently watching activity, staff only.
+
+        Just send .watching to wipe the activity."""
+        if game:
+            await self.bot.change_presence(activity=discord.Activity(name=video, type=discord.ActivityType.watching))
+        else:
+            await self.bot.change_presence(activity=None)
+
+        await ctx.send("Successfully set video.")
+
+    @commands.guild_only()
+    @commands.check(check_if_staff)
+    @commands.command(aliases=["setstreaming"])
+    async def streaming(self, ctx, *, game: str = ""):
+        """Sets the bot's currently streaming activity, staff only.
+
+        Just send .streaming to wipe the activity."""
+        if game:
+            await self.bot.change_presence(activity=discord.Activity(name=game, type=discord.ActivityType.streaming))
+        else:
+            await self.bot.change_presence(activity=None)
+
+        await ctx.send("Successfully set game.")
+
+    @commands.guild_only()
+    @commands.check(check_if_staff)
     @commands.command(aliases=["setbotnick", "botnick", "robotnick"])
     async def botnickname(self, ctx, *, nick: str = ""):
         """Sets the bot's nickname, staff only.
