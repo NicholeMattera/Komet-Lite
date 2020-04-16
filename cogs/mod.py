@@ -375,6 +375,8 @@ class Mod(Cog):
         if warn_count >= 5:  # just in case
             await target.ban(reason="exceeded warn limit",
                              delete_message_days=0)
+            userlog(target.id, ctx.author, f"exceeded warn limit - {reason}",
+                             "bans", target.name)
         await ctx.send(f"{target.mention} warned. "
                        f"User has {warn_count} warning(s).")
 
