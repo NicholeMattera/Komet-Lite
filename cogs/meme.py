@@ -183,7 +183,7 @@ class Meme(Cog):
         message = message.replace('R', 'W').replace('r', 'w')
         
         await ctx.message.delete()
-        await ctx.send(message)
+        await ctx.send(f"**{ctx.author.name}** {message}")
 
 def setup(bot):
     bot.add_cog(Meme(bot))
