@@ -217,6 +217,28 @@ class ModUserlog(Cog):
                        f"top_role = {role}\n",
                        embed=embed)
 
+    @commands.guild_only()
+    @commands.check(check_if_staff)
+    @commands.command()
+    async def bancount(self, ctx, user: discord.Member = None):
+        """Get a count of how many bans a user has made."""
+        numberOfBans = 0
+
+        if user is None:
+            user = ctx.author
+
+        
+        
+        userlog = get_userlog()
+        for ban in await ctx.guild.bans():
+            if str(ban.user.id) not in userlog:
+                continue
+
+            for loggedBan in userlog[str(ban.user.id)]["bans"]:
+                if user.id == loggedBan["issuer_id"]:
+                    numberOfBans += 1
+
+        await ctx.send(f"{user.mention} has banned {numberOfBans} users.")
 
 def setup(bot):
     bot.add_cog(ModUserlog(bot))
