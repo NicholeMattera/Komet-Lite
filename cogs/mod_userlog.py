@@ -227,14 +227,13 @@ class ModUserlog(Cog):
         if user is None:
             user = ctx.author
 
-        
-        
         userlog = get_userlog()
         for ban in await ctx.guild.bans():
-            if str(ban.user.id) not in userlog:
+            bannedUserId = str(ban.user.id)
+            if bannedUserId not in userlog or "bans" not in userlog[bannedUserId]:
                 continue
 
-            for loggedBan in userlog[str(ban.user.id)]["bans"]:
+            for loggedBan in userlog[bannedUserId]["bans"]:
                 if user.id == loggedBan["issuer_id"]:
                     numberOfBans += 1
 
