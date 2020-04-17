@@ -4,7 +4,6 @@ from discord.ext import commands
 from discord.ext.commands import Cog
 import math
 import platform
-from helpers.checks import check_if_staff_or_ot
 from helpers.checks import check_if_staff
 
 
@@ -24,7 +23,6 @@ class Meme(Cog):
         """this is where we take memes REALLY far"""
         return math.floor(c + 273.15)
 
-    @commands.check(check_if_staff_or_ot)
     @commands.command(hidden=True, name="warm")
     async def warm_member(self, ctx, user: discord.Member):
         """Warms a user :3"""
@@ -35,7 +33,6 @@ class Meme(Cog):
                        f" User is now {celsius}°C "
                        f"({fahrenheit}°F, {kelvin}K).")
 
-    @commands.check(check_if_staff_or_ot)
     @commands.command(hidden=True, name="chill", aliases=["cold", "cool"])
     async def chill_member(self, ctx, user: discord.Member):
         """Chills a user >:3"""
@@ -46,13 +43,11 @@ class Meme(Cog):
                        f" User is now {celsius}°C "
                        f"({fahrenheit}°F, {kelvin}K).")
 
-    @commands.check(check_if_staff_or_ot)
     @commands.command(hidden=True, aliases=["thank", "reswitchedgold"])
     async def gild(self, ctx, user: discord.Member):
         """Gives a star to a user"""
         await ctx.send(f"{user.mention} gets a :star:, yay!")
 
-    @commands.check(check_if_staff_or_ot)
     @commands.command(hidden=True, aliases=["atlassilver", "silv3r",
                                             "atlassilv3r"])
     async def silver(self, ctx, user: discord.Member):
@@ -63,7 +58,6 @@ class Meme(Cog):
         embed.set_image(url="https://cdn.discordapp.com/emojis/629188608732954635.png?v=1")
         await ctx.send(embed=embed)
 
-    @commands.check(check_if_staff_or_ot)
     @commands.command(hidden=True)
     async def btwiuse(self, ctx):
         """btw i use arch"""
@@ -72,19 +66,16 @@ class Meme(Cog):
                        f"{platform.python_version()} on {uname.system} "
                        f"{uname.release}")
 
-    @commands.check(check_if_staff_or_ot)
     @commands.command(hidden=True)
     async def yahaha(self, ctx):
         """secret command"""
         await ctx.send(f"🍂 you found me 🍂")
 
-    @commands.check(check_if_staff_or_ot)
     @commands.command(hidden=True)
     async def peng(self, ctx):
         """heck tomger"""
         await ctx.send(f"🐧")
 
-    @commands.check(check_if_staff_or_ot)
     @commands.command(hidden=True, aliases=["outstanding"])
     async def outstandingmove(self, ctx):
         """Posts the outstanding move meme"""
@@ -92,25 +83,21 @@ class Meme(Cog):
                        "/371047036348268545/528413677007929344"
                        "/image0-5.jpg")
 
-    @commands.check(check_if_staff_or_ot)
     @commands.command(hidden=True)
     async def bones(self, ctx):
         await ctx.send("https://cdn.discordapp.com/emojis/"
                        "443501365843591169.png?v=1")
 
-    @commands.check(check_if_staff_or_ot)
     @commands.command(hidden=True)
     async def headpat(self, ctx):
         await ctx.send("https://cdn.discordapp.com/emojis/"
                        "465650811909701642.png?v=1")
 
-    @commands.check(check_if_staff_or_ot)
     @commands.command(hidden=True, aliases=["when", "etawhen",
                                             "emunand", "thermosphere", "emummc"])
     async def eta(self, ctx):
         await ctx.send(random.choice(["15th June", "June 15th", "Wednesday.", "Tuesday."]))
 
-    @commands.check(check_if_staff_or_ot)
     @commands.command(hidden=True, name="bam", aliases=["boom"])
     async def bam_member(self, ctx, target: discord.Member):
         """Bams a user owo"""
