@@ -116,7 +116,7 @@ class Lists(Cog):
 
     # Commands
 
-    @commands.command(aliases = ['list'])
+    @commands.command(aliases = ["list"])
     async def listitem(self, ctx, channel: discord.TextChannel, number: int):
         """Link to a specific list item."""
         await self.link_list_item(ctx, channel, number)
@@ -127,12 +127,18 @@ class Lists(Cog):
         channel = ctx.guild.get_channel(config.rules_channel)
         await self.link_list_item(ctx, channel, number)
 
-    @commands.command(aliases = ['faq'])
+    @commands.command(aliases = ["faq"])
     async def support(self, ctx, number: int):
         """Link to a specific list item in #support-faq"""
         channel = ctx.guild.get_channel(config.support_faq_channel)
         await self.link_list_item(ctx, channel, number)
 
+    @commands.command(aliases=["es", "fs", "acid", "piracy"])
+    async def patches(self, ctx):
+        """Link to the list item in #support-faq about patches"""
+        channel = ctx.guild.get_channel(config.support_faq_channel)
+        await self.link_list_item(ctx, channel, 1)
+    
     # Listeners
 
     @Cog.listener()
