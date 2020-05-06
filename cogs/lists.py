@@ -105,7 +105,7 @@ class Lists(Cog):
             if counter == number:
                 embed = discord.Embed(
                     title=f"Item #{number} in #{channel.name}",
-                    description=message.content,
+                    description=message.content.strip(),
                     url=message.jump_url,
                 )
                 await ctx.send(content="", embed=embed)
