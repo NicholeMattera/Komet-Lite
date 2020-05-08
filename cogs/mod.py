@@ -317,11 +317,22 @@ class Mod(Cog):
         if sanity != 'yes_im_fucking_sure' and limit > config.purge_warning_limit:
             await channel.send('Read the help text.')
             return
-
-        await channel.purge(limit=limit)
+        
+        purged_data=[]
+        for message in await channel.purge(limit=limit):
+            purged_data.append({
+                "author": message.author.name,
+                "content": message.content
+            })
+        purged_json = json.dumps(purged_data)
+        purged_file = discord.File(
+            io.BytesIO(purged_json.encode('utf-8')),
+            filename="purged_messages.json"
+        )
+        
         msg = f"🗑 **Purged**: {ctx.author.mention} purged {limit} "\
               f"messages in {channel.mention}."
-        await log_channel.send(msg)
+        await log_channel.send(msg, files=purged_file)
 
     @commands.guild_only()
     @commands.check(check_if_staff)
