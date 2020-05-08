@@ -1,4 +1,4 @@
-# Robocop-ng
+# Komet-CL (Crash Landing)
 
 Next-gen rewrite of Kurisu/Robocop/Komet bot used by AtlasNX, ReSwitched and Nintendo Homebrew with discord.py rewrite, designed to be relatively clean, consistent and un-bloated.
 
@@ -79,7 +79,6 @@ The main goal of this project, to get Robocop functionality done, is complete.
 
 Secondary goal is adding new features:
 
-- [ ] Purge: On purge, send logs in form of txt file to server logs
 - [ ] New feature: Modmail
 - [ ] New feature: Submiterr (relies on modmail)
 - [ ] Feature creep: Shortlink completion (gl/ao/etc)
@@ -105,6 +104,7 @@ Secondary goal is adding new features:
 - [x] New moderation feature: tracking invites posted
 - [x] New self-moderation feature: .mywarns
 - [x] New feature: Highlights (problematic words automatically get posted to modmail channel, relies on modmail)
+- [x] Purge: On purge, send logs in form of txt file to server logs
 
 </p>
 </details>
