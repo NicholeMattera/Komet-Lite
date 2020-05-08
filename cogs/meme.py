@@ -172,5 +172,14 @@ class Meme(Cog):
         await ctx.message.delete()
         await ctx.send(f"**{ctx.author.name}** {message}")
 
+    @commands.command(hidden=True)
+    async def clap(self, ctx, *, message: str):
+        """Surrounds each word with clap emojis for emphasis"""
+        words = message.split(' ')
+
+        await ctx.message.delete()
+        await ctx.send(f"**{ctx.author.name}** {' '.join(map(lambda w: '👏 ' + w, words))} 👏")
+    
+
 def setup(bot):
     bot.add_cog(Meme(bot))
