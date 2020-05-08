@@ -4,6 +4,7 @@ import io
 import urllib.parse
 from discord.ext import commands
 from discord.ext.commands import Cog
+from helpers.checks import check_if_staff
 
 
 class Lists(Cog):
@@ -91,11 +92,11 @@ class Lists(Cog):
     async def link_list_item(self, ctx, channel: discord.TextChannel, number: int):
         if number <= 0:
             await ctx.send(f"Number must be greater than 0.")
-            return
+            return False
 
         if channel.id not in config.list_channels:
             await ctx.send(f"{channel.mention} is not a list channel.")
-            return
+            return False
 
         counter = 0
         async for message in channel.history(limit=None, oldest_first=True):
@@ -109,9 +110,10 @@ class Lists(Cog):
                     url=message.jump_url,
                 )
                 await ctx.send(content="", embed=embed)
-                return
+                return True
 
         await ctx.send(f"Unable to find item #{number} in {channel.mention}.")
+        return False
 
     async def cache_message(self, message):
         msg = {
@@ -159,6 +161,49 @@ class Lists(Cog):
         """Link to a specific list item in #rules"""
         channel = ctx.guild.get_channel(config.rules_channel)
         await self.link_list_item(ctx, channel, number)
+
+    @commands.guild_only()
+    @commands.check(check_if_staff)
+    @commands.command(aliases=["warnrule", "ruleswarn", "warnrules"])
+    async def rulewarn(
+        self, ctx, target: discord.Member, number: int, reason: str = ""
+    ):
+        if "Mod" not in self.bot.cogs:
+            await ctx.send("Mod cog must be loaded to run this command.")
+            return
+
+        mod_cog = self.bot.cogs["Mod"]
+        warn_command = None
+        for command in mod_cog.get_commands():
+            if command.name == "warn":
+                warn_command = command
+                break
+
+        if warn_command is None:
+            await ctx.send("Unable to find the warn command from the Mod cog.")
+            return
+
+        if not await warn_command.can_run(ctx):
+            await ctx.send("Unable to run the warn command from the Mod cog.")
+            return
+
+        if (
+            len(warn_command.params) != 4
+            or "self" not in warn_command.params
+            or "ctx" not in warn_command.params
+            or "target" not in warn_command.params
+            or "reason" not in warn_command.params
+        ):
+            await ctx.send(
+                "Warn's signature has changed please update the Lists cog."
+            )
+            return
+
+        channel = ctx.guild.get_channel(config.rules_channel)
+        if await self.link_list_item(ctx, channel, number):
+            await warn_command.callback(
+                mod_cog, ctx=ctx, target=target, reason=f"Rule {number} - {reason}"
+            )
 
     @commands.command(aliases=["faq"])
     async def support(self, ctx, number: int):
