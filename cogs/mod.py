@@ -332,7 +332,7 @@ class Mod(Cog):
         
         msg = f"🗑 **Purged**: {ctx.author.mention} purged {limit} "\
               f"messages in {channel.mention}."
-        await log_channel.send(msg, files=purged_file)
+        await log_channel.send(msg, files=[purged_file])
 
     @commands.guild_only()
     @commands.check(check_if_staff)
