@@ -79,7 +79,6 @@ The main goal of this project, to get Robocop functionality done, is complete.
 
 Secondary goal is adding new features:
 
-- [ ] New feature: Modmail
 - [ ] New feature: Submiterr (relies on modmail)
 - [ ] Feature creep: Shortlink completion (gl/ao/etc)
 - [ ] New moderation feature: timelock (channel lockdown with time, relies on robocronp)
@@ -105,6 +104,7 @@ Secondary goal is adding new features:
 - [x] New self-moderation feature: .mywarns
 - [x] New feature: Highlights (problematic words automatically get posted to modmail channel, relies on modmail)
 - [x] Purge: On purge, send logs in form of txt file to server logs
+- [x] New feature: Modmail
 
 </p>
 </details>
