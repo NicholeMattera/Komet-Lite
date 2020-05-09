@@ -14,12 +14,18 @@ class ModMail(Cog):
     async def modmail(self, ctx, *, body: str = ""):
         """Sends a modmail"""
 
+        # Prevent sending of blank messages.
+        if len(body.strip()) == 0:
+            await ctx.send("A message can not be empty.")
+            return
+
         logs = get_userlog()
         uid = str(ctx.author.id)
 
         # Get the timeout from the config and default it to 15 seconds.
         timeout = getattr(config, "modmail_timeout", 15)
 
+        # Make sure our user exists in the userlog, and they've sent a message before.
         if uid in logs and "mail" in logs[uid] and len(logs[uid]["mail"]) != 0:
             last_message = logs[uid]["mail"][-1]
 
