@@ -1,113 +1,141 @@
-import datetime
+# Komet-CL (Crash Landing)
 
-# Basic bot config, insert your token here, update description if you want
-prefixes = [".", "!"]
-token = "token-goes-here"
-bot_description = "Robocop-NG, the moderation bot of ReSwitched."
+Next-gen rewrite of Kurisu/Robocop/Komet bot used by AtlasNX, ReSwitched and Nintendo Homebrew with discord.py rewrite, designed to be relatively clean, consistent and un-bloated.
 
-# If you forked robocop-ng, put your repo here
-source_url = "https://github.com/reswitched/robocop-ng"
-rules_url = "https://reswitched.team/discord/#rules"
-
-# The bot description to be used in .robocop embed
-embed_desc = "Robocop-NG is developed by [Ave](https://github.com/aveao)"\
-             " and [tomGER](https://github.com/tumGER), and is a rewrite "\
-             "of Robocop.\nRobocop is based on Kurisu by 916253 and ihaveamac."
+Code is based on https://gitlab.com/ao/dpybotbase and https://github.com/916253/Kurisu-Reswitched.
 
 
-# Minimum account age required to join the guild
-# If user's account creation is shorter than the time delta given here
-# then user will be kicked and informed
-min_age = datetime.timedelta(minutes=15)
+---
 
-# The bot will only work in these guilds
-guild_whitelist = [
-    269333940928512010  # ReSwitched discord
-]
+## How to run
 
-# Role that gets chosen by default by .approve and .revoke if none was specified
-default_named_role = "community"
+- Copy `config.py.template` to `config.py`, configure all necessary parts to your server.
+- Install python3.6+.
+- Install python dependencies (`pip3 install -Ur requirements.txt`, you might need to put `sudo -H` before that)
+- If you're moving from Kurisu or Robocop: Follow `Tips for people moving from Kurisu/Robocop` below.
+- Run `Robocop.py` (`python3 Robocop.py`)
 
-# Named roles to be used with .approve and .revoke
-# Example: .approve User hacker
-named_roles = {
-    "community": 420010997877833731,
-    "hacker": 364508795038072833,
-    "participant": 434353085926866946
-}
+To keep the bot running, you might want to use pm2 or a systemd service.
 
-# The bot manager and staff roles
-# Bot manager can run eval, exit and other destructive commands
-# Staff can run administrative commands
-bot_manager_role_id = 466447265863696394  # Bot management role in ReSwitched
-staff_role_ids = [364647829248933888,  # Team role in ReSwitched
-                  360138431524765707,  # Mod role in ReSwitched
-                  466447265863696394,  # Bot management role in ReSwitched
-                  360138163156549632,  # Admin role in ReSwitched
-                  287289529986187266]  # Wizard role in ReSwitched
+---
 
-# Various log channels used to log bot and guild's activity
-# You can use same channel for multiple log types
-# Spylog channel logs suspicious messages or messages by members under watch
-# Invites created with .invite will direct to the welcome channel.
-log_channel = 290958160414375946  # server-logs in ReSwitched
-botlog_channel = 529070282409771048  # bot-logs channel in ReSwitched
-modlog_channel = 542114169244221452  # mod-logs channel in ReSwitched
-spylog_channel = 548304839294189579  # spy channel in ReSwitched
-welcome_channel = 326416669058662401  # newcomers channel in ReSwitched
+## Tips for people moving from Kurisu/Robocop
 
-rules_channel = 567353505367719947  # rules channel in AtlasNX
-support_faq_channel = 628596855470555167  # support-faq channel in AtlasNX
-list_files_channel = 680792242188845079 # Used for uploading raw text files for list editing.
+If you're moving from Kurisu/Robocop, and want to preserve your data, you'll want to do the following steps:
 
-# These channel entries are used to determine which roles will be given
-# access when we unmute on them
-general_channels = [420029476634886144,
-                    414949821003202562,
-                    383368936466546698,
-                    343244421044633602,
-                    491316901692178432,
-                    539212260350885908]  # Channels everyone can access
-community_channels = [269333940928512010,
-                      438839875970662400,
-                      404722395845361668,
-                      435687501068501002,
-                      286612533757083648]  # Channels requiring community role
+- Copy your `data` folder over.
+- Rename your `data/warnsv2.json` file to `data/userlog.json`.
+- Edit `data/restrictions.json` and replace role names (`"Muted"` etc) with role IDs (`526500080879140874` etc). Make sure to have it as int, not as str (don't wrap role id with `"` or `'`).
 
-# Channels that are lists that are controlled by the lists cog.
-list_channels = [680129341958783086,
-                 680129375705890839]
+---
 
-# Controls which roles are blocked during lockdown
-lockdown_configs = {
-    # Used as a default value for channels without a config
-    "default": {
-        "channels": general_channels,
-        "roles": [named_roles["participant"]]
-    },
-    "community": {
-        "channels": community_channels,
-        "roles": [named_roles["community"], named_roles["hacker"]]
-    }
-}
+## TODO
 
-# The maximum amount of messages that can be purged before a sanity check is put in place
-purge_warning_limit = 50
+All Robocop features are now supported.
 
-# Mute role is applied to users when they're muted
-# As we no longer have mute role on ReSwitched, I set it to 0 here
-mute_role = 0  # Mute role in ReSwitched
+<details>
+<summary>List of added Kurisu/Robocop features</summary>
+<p>
 
-# Channels that will be cleaned every minute/hour
-minutely_clean_channels = []
-hourly_clean_channels = []
+- [x] .py configs
+- [x] membercount command
+- [x] Meme commands and pegaswitch (honestly the easiest part)
+- [x] source command
+- [x] robocop command
+- [x] Verification: Actual verification system
+- [x] Verification: Reset command
+- [x] Logging: joins
+- [x] Logging: leaves
+- [x] Logging: role changes
+- [x] Logging: bans
+- [x] Logging: kicks
+- [x] Moderation: speak
+- [x] Moderation: ban
+- [x] Moderation: silentban
+- [x] Moderation: kick
+- [x] Moderation: userinfo
+- [x] Moderation: approve-revoke (community)
+- [x] Moderation: addhacker-removehacker (hacker)
+- [x] Moderation: probate-unprobate (participant)
+- [x] Moderation: lock-softlock-unlock (channel lockdown)
+- [x] Moderation: mute-unmute
+- [x] Moderation: playing
+- [x] Moderation: botnickname
+- [x] Moderation: nickname
+- [x] Moderation: clear/purge
+- [x] Moderation: restrictions (people who leave with muted role will get muted role on join)
+- [x] Warns: warn
+- [x] Warns: listwarns-listwarnsid
+- [x] Warns: clearwarns-clearwarnsid
+- [x] Warns: delwarnid-delwarn
+- [x] .serr and .err (thanks tomger!)
 
-# Edited and deletes messages in these channels will be logged
-spy_channels = general_channels
+</p>
+</details>
 
-# Channels and roles where users can pin messages
-allowed_pin_channels = []
-allowed_pin_roles = []
+---
 
-# Used for the pinboard. Leave empty if you don't wish for a gist pinboard.
-github_oauth_token = ""
+The main goal of this project, to get Robocop functionality done, is complete.
+
+Secondary goal is adding new features:
+
+- [ ] New feature: Submiterr (relies on modmail)
+- [ ] Feature creep: Shortlink completion (gl/ao/etc)
+- [ ] New moderation feature: timelock (channel lockdown with time, relies on robocronp)
+
+<details>
+<summary>Completed features</summary>
+<p>
+
+- [x] Better security, better checks and better guild whitelisting
+- [x] Feature creep: Reminds
+- [x] A system for running jobs in background with an interval (will be called robocronp)
+- [x] Commands to list said jobs and remove them
+- [x] New moderation feature: timemute (mute with time, relies on robocronp)
+- [x] New moderation feature: timeban (ban with expiry, relies on robocronp)
+- [x] Improvements to lockdown to ensure that staff can talk
+- [x] New moderation feature: Display of mutes, bans and kicks on listwarns (.userlog now)
+- [x] New moderation feature: User notes
+- [x] New moderation feature: Reaction removing features (thanks misson20000!)
+- [x] New moderation feature: User nickname change
+- [x] New moderation feature: watch-unwatch
+- [x] New moderation feature: tracking suspicious keywords
+- [x] New moderation feature: tracking invites posted
+- [x] New self-moderation feature: .mywarns
+- [x] New feature: Highlights (problematic words automatically get posted to modmail channel, relies on modmail)
+- [x] Purge: On purge, send logs in form of txt file to server logs
+- [x] New feature: Modmail
+
+</p>
+</details>
+
+<details>
+<summary>TODO for robocronp</summary>
+<p>
+
+- [ ] Reduce code repetition on mod_timed.py
+- [x] Allow non-hour values on timed bans
+
+the following require me to rethink some of the lockdown code, which I don't feel like
+
+- [ ] lockdown in helper
+- [ ] timelock command
+- [ ] working cronjob for unlock
+
+</p>
+</details>
+
+---
+
+## Credits
+
+Robocop-NG is currently developed and maintained by @aveao and @tumGER. The official bot is hosted by @yuukieve.
+
+I (ave) would like to thank the following, in no particular order:
+
+- Ave, writing most code
+- ReSwitched community, for being amazing
+- ihaveamac/ihaveahax and f916253 for the original kurisu/robocop
+- misson20000 for adding in reaction removal feature and putting up with my many BS requests on PR reviews
+- Everyone who contributed to robocop-ng in any way (reporting a bug, sending a PR, forking and hosting their own at their own guild, etc).
+
