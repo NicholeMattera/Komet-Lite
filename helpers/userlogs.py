@@ -9,6 +9,18 @@ userlog_event_types = {"warns": "Warn",
                        "mail": "Mail"}
 
 
+def get_blank_userlog():
+    return {"warns": [],
+            "mutes": [],
+            "kicks": [],
+            "bans": [],
+            "notes": [],
+            "mail": [],
+            "mail_blocked": False,
+            "watch": False,
+            "name": "n/a"}
+
+
 def get_userlog():
     with open("data/userlog.json", "r") as f:
         return json.load(f)
@@ -23,15 +35,7 @@ def userlog(uid, issuer, reason, event_type, uname: str = ""):
     userlogs = get_userlog()
     uid = str(uid)
     if uid not in userlogs:
-        userlogs[uid] = {"warns": [],
-                         "mutes": [],
-                         "kicks": [],
-                         "bans": [],
-                         "notes": [],
-                         "mail": [],
-                         "mail_blocked": False,
-                         "watch": False,
-                         "name": "n/a"}
+        userlogs[uid] = self.get_blank_userlog()
     if uname:
         userlogs[uid]["name"] = uname
 
@@ -59,15 +63,7 @@ def setwatch(uid, issuer, watch_state, uname: str = ""):
     uid = str(uid)
     # Can we reduce code repetition here?
     if uid not in userlogs:
-        userlogs[uid] = {"warns": [],
-                         "mutes": [],
-                         "kicks": [],
-                         "bans": [],
-                         "notes": [],
-                         "mail": [],
-                         "mail_blocked": False,
-                         "watch": False,
-                         "name": "n/a"}
+        userlogs[uid] = self.get_blank_userlog()
     if uname:
         userlogs[uid]["name"] = uname
 
