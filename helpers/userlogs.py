@@ -5,7 +5,8 @@ userlog_event_types = {"warns": "Warn",
                        "bans": "Ban",
                        "kicks": "Kick",
                        "mutes": "Mute",
-                       "notes": "Note"}
+                       "notes": "Note",
+                       "mail": "Mail"}
 
 
 def get_userlog():
@@ -27,15 +28,25 @@ def userlog(uid, issuer, reason, event_type, uname: str = ""):
                          "kicks": [],
                          "bans": [],
                          "notes": [],
+                         "mail": [],
+                         "mail_blocked": False,
                          "watch": False,
                          "name": "n/a"}
     if uname:
         userlogs[uid]["name"] = uname
-    timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-    log_data = {"issuer_id": issuer.id,
-                "issuer_name": f"{issuer}",
-                "reason": reason,
-                "timestamp": timestamp}
+
+    log_data = {}
+    if event_type == "mail":
+        log_data = {"body": reason,
+                    "timestamp": int(time.time())
+                    "resolved": False,
+                    "replier_id": 0,
+                    "replier_name": ""}
+    else:
+        log_data = {"issuer_id": issuer.id,
+                    "issuer_name": f"{issuer}",
+                    "reason": reason,
+                    "timestamp": time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())}
     if event_type not in userlogs[uid]:
         userlogs[uid][event_type] = []
     userlogs[uid][event_type].append(log_data)
@@ -53,6 +64,8 @@ def setwatch(uid, issuer, watch_state, uname: str = ""):
                          "kicks": [],
                          "bans": [],
                          "notes": [],
+                         "mail": [],
+                         "mail_blocked": False,
                          "watch": False,
                          "name": "n/a"}
     if uname:
