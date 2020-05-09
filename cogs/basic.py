@@ -49,7 +49,7 @@ class Basic(Cog):
         await ctx.send(f"{ctx.guild.name} has "
                        f"{ctx.guild.member_count} members!")
 
-    @commands.command(aliases=["robocopng", "robocop-ng"])
+    @commands.command(aliases=["robocopng", "robocop-ng", "komet", "komet-cl"])
     async def robocop(self, ctx):
         """Shows a quick embed with bot info."""
         embed = discord.Embed(title="Komet",
@@ -77,6 +77,16 @@ class Basic(Cog):
                        f"gw: `{gw_ms:.1f}ms`"
         self.bot.log.info(message_text)
         await tmp.edit(content=message_text)
+
+    @commands.command(aliases=['creport'])
+    async def modmail(self, ctx):
+        """Sends a modmail"""
+        modmail_channel = self.bot.get_channel(config.modmail_channel)
+        embed =  discord.Embed(title=f"New modmail from {ctx.author.name}!",
+                               description=f"**Content:** {ctx.message.content}")
+        embed.set_thumbnail(url=ctx.author.avatar_url)
+
+        await modmail_channel.send(embed=embed)
 
 
 def setup(bot):
