@@ -166,7 +166,7 @@ class Lists(Cog):
     @commands.check(check_if_staff)
     @commands.command(aliases=["warnrule", "ruleswarn", "warnrules"])
     async def rulewarn(
-        self, ctx, target: discord.Member, number: int, reason: str = ""
+        self, ctx, target: discord.Member, number: int, *, reason: str = ""
     ):
         if "Mod" not in self.bot.cogs:
             await ctx.send("Mod cog must be loaded to run this command.")
