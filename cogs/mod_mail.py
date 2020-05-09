@@ -121,18 +121,16 @@ class ModMail(Cog):
             await ctx.send("No mod mail message to mark as resolved.")
             return
 
-        message = logs[uid]["mail"][-1]
-
-        if message["resolved"]:
+        if logs[uid]["mail"][-1]["resolved"]:
             await ctx.send("Last mod mail message is already marked as resolved.")
             return
 
-        message["resolved"] = True
-        set_userlog(logs)
+        logs[uid]["mail"][-1]["resolved"] = True
+        set_userlog(json.dumps(logs))
 
         modmail_channel = self.bot.get_channel(config.modmail_channel)
-        modmail_message = await modmail_channel.fetch_message(message["message_id"])
-        await modmail_message.edit(embed=self.build_embed(ctx.author, message))
+        message = await modmail_channel.fetch_message(logs[uid]["mail"][-1]["message_id"])
+        await message.edit(embed=self.build_embed(ctx.author, logs[uid]["mail"][-1]))
 
         await ctx.send(f"{ctx.author.mention} - Message marked as resolved.")
 
