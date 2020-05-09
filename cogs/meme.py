@@ -94,7 +94,7 @@ class Meme(Cog):
                        "465650811909701642.png?v=1")
 
     @commands.command(hidden=True, aliases=["when", "etawhen",
-                                            "emunand", "thermosphere", "emummc"])
+                                            "thermosphere"])
     async def eta(self, ctx):
         await ctx.send(random.choice(["15th June", "June 15th", "Wednesday.", "Tuesday."]))
 
