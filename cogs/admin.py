@@ -6,6 +6,7 @@ import inspect
 import re
 import config
 from helpers.checks import check_if_bot_manager
+from helpers.userlogs import set_userlog
 
 
 class Admin(Cog):
@@ -116,6 +117,22 @@ class Admin(Cog):
         self.bot.log.info(f'Reloaded ext {ext}')
         await ctx.send(f':white_check_mark: `{ext}` successfully reloaded.')
 
+    @commands.guild_only()
+    @commands.check(check_if_bot_manager)
+    @commands.command()
+    async def restoreuserlog(self, ctx, message_id: int):
+        """Restores the user log from a saved backup."""
+        message = await self.bot.botlog_channel.fetch_message(message_id)
+        if message.author.id != self.bot.user.id or len(message.attachments) == 0:
+            await ctx.send("Incorrect Message ID.")
+
+        for attachment in message.attachments:
+            if attachment.filename == "userlog.json":
+                logs = (await attachment.read()).decode("utf-8")
+                set_userlog(logs)
+                return
+        
+        await ctx.send("Incorrect Message ID.")
 
 def setup(bot):
     bot.add_cog(Admin(bot))
