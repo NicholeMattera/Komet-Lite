@@ -59,6 +59,7 @@ welcome_channel = 326416669058662401  # newcomers channel in ReSwitched
 rules_channel = 567353505367719947  # rules channel in AtlasNX
 support_faq_channel = 628596855470555167  # support-faq channel in AtlasNX
 list_files_channel = 680792242188845079 # Used for uploading raw text files for list editing.
+modmail_channel = 0 # Modlog channel in AtlasNX
 
 # These channel entries are used to determine which roles will be given
 # access when we unmute on them
