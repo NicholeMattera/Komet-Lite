@@ -38,7 +38,7 @@ def userlog(uid, issuer, reason, event_type, uname: str = ""):
     log_data = {}
     if event_type == "mail":
         log_data = {"body": reason,
-                    "timestamp": int(time.time())
+                    "timestamp": int(time.time()),
                     "resolved": False,
                     "replier_id": 0,
                     "replier_name": ""}
