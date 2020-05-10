@@ -182,6 +182,9 @@ class ListsVerification(Cog):
     async def on_message(self, message):
         await self.bot.wait_until_ready()
 
+        if not hasattr(config, "verification_channel"):
+            return
+
         # We only care about messages in Rules, and Support FAQ
         if message.channel.id != config.verification_channel:
             return
@@ -205,36 +208,32 @@ class ListsVerification(Cog):
     async def daily(self):
         await self.bot.wait_until_ready()
 
+        if (
+            not hasattr(config, "log_channel")
+            or not hasattr(config, "rules_channel")
+            or not hasattr(config, "verification_channel")
+        ):
+            return
+
         log_channel_id = getattr(config, "log_channel", 0)
         rules_channel_id = getattr(config, "rules_channel", 0)
         verification_channel_id = getattr(config, "verification_channel", 0)
 
-        log_channel = None
-        if log_channel_id != 0:
-            log_channel = self.bot.get_channel(log_channel_id)
-
-        rules_channel = None
-        if rules_channel_id != 0:
-            rules_channel = self.bot.get_channel(rules_channel_id)
-
-        verification_channel = None
-        if verification_channel_id != 0:
-            verification_channel = self.bot.get_channel(verification_channel_id)
+        log_channel = self.bot.get_channel(config.log_channel)
+        rules_channel = self.bot.get_channel(config.rules_channel)
+        verification_channel = self.bot.get_channel(config.verification_channel)
 
         # Make sure the bot is open.
         while not self.bot.is_closed():
             # Reset the verification channel
             try:
-                if rules_channel is not None and verification_channel is not None:
-                    await self.reset_verification_channel(
-                        rules_channel, verification_channel
-                    )
+                await self.reset_verification_channel(
+                    rules_channel, verification_channel
+                )
             except:
-                if log_channel is not None:
-                    await log_channel.send(
-                        "Verification reset has errored: ```"
-                        f"{traceback.format_exc()}```"
-                    )
+                await log_channel.send(
+                    "Verification reset has errored: ```" f"{traceback.format_exc()}```"
+                )
 
             # Wait 1 day
             await asyncio.sleep(86400)
