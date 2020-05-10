@@ -1,10 +1,11 @@
 import config
 import discord
-import io
-import urllib.parse
 from discord.ext import commands
 from discord.ext.commands import Cog
 from helpers.checks import check_if_staff
+import io
+import os
+import urllib.parse
 
 
 class Lists(Cog):
@@ -195,9 +196,7 @@ class Lists(Cog):
             or "target" not in warn_command.params
             or "reason" not in warn_command.params
         ):
-            await ctx.send(
-                "Warn's signature has changed please update the Lists cog."
-            )
+            await ctx.send("Warn's signature has changed please update the Lists cog.")
             return
 
         channel = ctx.guild.get_channel(config.rules_channel)

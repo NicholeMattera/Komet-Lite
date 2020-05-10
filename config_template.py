@@ -61,6 +61,10 @@ support_faq_channel = 628596855470555167  # support-faq channel in AtlasNX
 list_files_channel = 680792242188845079 # Used for uploading raw text files for list editing.
 modmail_channel = 0 # Modlog channel in AtlasNX
 
+# Configs used for Lists Verification cog
+verification_channel = 700167992113102861
+verified_role = 700170091144413236
+
 # These channel entries are used to determine which roles will be given
 # access when we unmute on them
 general_channels = [420029476634886144,
