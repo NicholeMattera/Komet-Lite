@@ -107,8 +107,9 @@ class Lists(Cog):
                 embed = discord.Embed(
                     title=f"Item #{number} in #{channel.name}",
                     description=message.content.replace("​", "").strip(),
-                    url=message.jump_url,
                 )
+                embed.add_field(name="Jump URL", value=f"[Jump!]({message.jump_url})")
+
                 await ctx.send(content="", embed=embed)
                 return True
 

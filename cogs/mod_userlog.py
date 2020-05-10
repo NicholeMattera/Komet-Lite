@@ -30,8 +30,7 @@ class ModUserlog(Cog):
             if event_type in userlog[uid] and userlog[uid][event_type]:
                 event_name = userlog_event_types[event_type]
                 for idx, event in enumerate(userlog[uid][event_type]):
-                    issuer = "" if own else f"Issuer: {event['issuer_name']} "\
-                                            f"({event['issuer_id']})\n"
+                    issuer = "" if own else f"Issuer: <@{event['issuer_id']}>\n"
                     embed.add_field(name=f"{event_name} {idx + 1}: "
                                          f"{event['timestamp']}",
                                     value=issuer + f"Reason: {event['reason']}",
