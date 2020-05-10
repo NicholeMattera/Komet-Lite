@@ -35,7 +35,7 @@ def userlog(uid, issuer, reason, event_type, uname: str = ""):
     userlogs = get_userlog()
     uid = str(uid)
     if uid not in userlogs:
-        userlogs[uid] = self.get_blank_userlog()
+        userlogs[uid] = get_blank_userlog()
     if uname:
         userlogs[uid]["name"] = uname
 
@@ -63,7 +63,7 @@ def setwatch(uid, issuer, watch_state, uname: str = ""):
     uid = str(uid)
     # Can we reduce code repetition here?
     if uid not in userlogs:
-        userlogs[uid] = self.get_blank_userlog()
+        userlogs[uid] = get_blank_userlog()
     if uname:
         userlogs[uid]["name"] = uname
 
