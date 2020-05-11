@@ -263,30 +263,31 @@ class Logs(Cog):
         msg = ""
         log_channel = self.bot.get_channel(config.log_channel)
         if member_before.roles != member_after.roles:
-            # role removal
-            role_removal = []
-            for index, role in enumerate(member_before.roles):
-                if role not in member_after.roles:
-                    role_removal.append(role)
-            # role addition
-            role_addition = []
-            for index, role in enumerate(member_after.roles):
-                if role not in member_before.roles:
-                    role_addition.append(role)
+            return
+            # # role removal
+            # role_removal = []
+            # for index, role in enumerate(member_before.roles):
+            #     if role not in member_after.roles:
+            #         role_removal.append(role)
+            # # role addition
+            # role_addition = []
+            # for index, role in enumerate(member_after.roles):
+            #     if role not in member_before.roles:
+            #         role_addition.append(role)
 
-            if len(role_addition) != 0 or len(role_removal) != 0:
-                msg += "\n👑 __Role change__: "
-                roles = []
-                for role in role_removal:
-                    roles.append("_~~" + role.name + "~~_")
-                for role in role_addition:
-                    roles.append("__**" + role.name + "**__")
-                for index, role in enumerate(member_after.roles):
-                    if role.name == "@everyone":
-                        continue
-                    if role not in role_removal and role not in role_addition:
-                        roles.append(role.name)
-                msg += ", ".join(roles)
+            # if len(role_addition) != 0 or len(role_removal) != 0:
+            #     msg += "\n👑 __Role change__: "
+            #     roles = []
+            #     for role in role_removal:
+            #         roles.append("_~~" + role.name + "~~_")
+            #     for role in role_addition:
+            #         roles.append("__**" + role.name + "**__")
+            #     for index, role in enumerate(member_after.roles):
+            #         if role.name == "@everyone":
+            #             continue
+            #         if role not in role_removal and role not in role_addition:
+            #             roles.append(role.name)
+            #     msg += ", ".join(roles)
 
         if member_before.name != member_after.name:
             msg += "\n📝 __Username change__: "\

@@ -183,7 +183,8 @@ class ListsVerification(Cog):
         verified_role = ctx.guild.get_role(config.verified_role)
 
         for member in ctx.guild.members:
-            await member.add_roles(verified_role)
+            if verified_role not in member.roles:
+                await member.add_roles(verified_role)
 
         await ctx.send('All members verified.')
 
