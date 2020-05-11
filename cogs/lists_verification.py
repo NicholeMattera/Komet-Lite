@@ -176,6 +176,17 @@ class ListsVerification(Cog):
         if rules_channel is not None and verification_channel is not None:
             await self.reset_verification_channel(rules_channel, verification_channel)
 
+    @commands.check(check_if_staff)
+    @commands.command()
+    async def verifyall(self, ctx):
+        """Gives everyone the verification role"""
+        verified_role = ctx.guild.get_role(config.verified_role)
+
+        for member in ctx.guild.members:
+            await member.add_roles(verified_role)
+
+        await ctx.send('All members verified.')
+
     # Listeners
 
     @Cog.listener()
