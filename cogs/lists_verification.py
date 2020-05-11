@@ -188,6 +188,15 @@ class ListsVerification(Cog):
 
         await ctx.send('All members verified.')
 
+    @commands.check(check_if_staff)
+    @commands.command()
+    async def verifiedcount(self, ctx):
+        """Prints the number of verified members"""
+        verified_role = ctx.guild.get_role(config.verified_role)
+        await ctx.send(
+            f"{ctx.guild.name} has " f"{len(verified_role.members)} verified members!"
+        )
+
     # Listeners
 
     @Cog.listener()
