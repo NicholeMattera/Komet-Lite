@@ -2,7 +2,7 @@ import config
 import discord
 from discord.ext import commands
 from discord.ext.commands import Cog
-from helpers.checks import check_if_staff
+from helpers.checks import check_if_staff, check_if_verified
 import io
 import os
 import urllib.parse
@@ -153,11 +153,15 @@ class Lists(Cog):
 
     # Commands
 
+    @commands.guild_only()
+    @commands.check(check_if_verified)
     @commands.command(aliases=["list"])
     async def listitem(self, ctx, channel: discord.TextChannel, number: int):
         """Link to a specific list item."""
         await self.link_list_item(ctx, channel, number)
 
+    @commands.guild_only()
+    @commands.check(check_if_verified)
     @commands.command(aliases=["rule"])
     async def rules(self, ctx, number: int):
         """Link to a specific list item in #rules"""
@@ -205,12 +209,16 @@ class Lists(Cog):
                 mod_cog, ctx=ctx, target=target, reason=f"Rule {number} - {reason}"
             )
 
+    @commands.guild_only()
+    @commands.check(check_if_verified)
     @commands.command(aliases=["faq"])
     async def support(self, ctx, number: int):
         """Link to a specific list item in #support-faq"""
         channel = ctx.guild.get_channel(config.support_faq_channel)
         await self.link_list_item(ctx, channel, number)
 
+    @commands.guild_only()
+    @commands.check(check_if_verified)
     @commands.command(aliases=["es", "fs", "acid", "piracy"])
     async def patches(self, ctx):
         """Link to the list item in #support-faq about patches"""

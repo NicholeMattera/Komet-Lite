@@ -3,6 +3,7 @@ import discord
 
 from discord.ext import commands
 from discord.ext.commands import Cog
+from helpers.checks import check_if_verified
 from helpers.errcodes import *
 
 class Err(Cog):
@@ -19,6 +20,7 @@ class Err(Cog):
                            "so it can be added to the bot."
         self.rickroll = "https://www.youtube.com/watch?v=4uj896lr3-E"
 
+    @commands.check(check_if_verified)
     @commands.command(aliases=["3dserr", "3err", "dserr"])
     async def dderr(self, ctx, err: str):
         """Searches for 3DS error codes!
@@ -60,6 +62,7 @@ class Err(Cog):
             await ctx.send("Unknown Format - This is either "
                            "no error code or you made some mistake!")
 
+    @commands.check(check_if_verified)
     @commands.command(aliases=["wiiuserr", "uerr", "wuerr", "mochaerr"])
     async def wiiuerr(self, ctx, err: str):
         """Searches for Wii U error codes!
@@ -86,6 +89,7 @@ class Err(Cog):
             await ctx.send("Unknown Format - This is either "
                            "no error code or you made some mistake!")
 
+    @commands.check(check_if_verified)
     @commands.command(aliases=["nxerr", "serr"])
     async def err(self, ctx, err: str):
         """Searches for Switch error codes!
@@ -158,6 +162,7 @@ class Err(Cog):
             await ctx.send("Unknown Format - This is either "
                            "no error code or you made some mistake!")
 
+    @commands.check(check_if_verified)
     @commands.command(aliases=["e2h"])
     async def err2hex(self, ctx, err: str):
         """Converts Nintendo Switch errors to hex
@@ -171,6 +176,7 @@ class Err(Cog):
             await ctx.send("This doesn't follow the typical"
                            " Nintendo Switch 2XXX-XXXX format!")
 
+    @commands.check(check_if_verified)
     @commands.command(aliases=["h2e"])
     async def hex2err(self, ctx, err: str):
         """Converts Nintendo Switch errors to hex

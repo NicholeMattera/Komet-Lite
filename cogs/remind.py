@@ -4,6 +4,7 @@ import time
 from datetime import datetime
 from discord.ext import commands
 from discord.ext.commands import Cog
+from helpers.checks import check_if_verified
 from helpers.robocronp import add_job, get_crontab
 
 
@@ -11,6 +12,7 @@ class Remind(Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.check(check_if_verified)
     @commands.cooldown(1, 60, type=commands.BucketType.user)
     @commands.command()
     async def remindlist(self, ctx):
@@ -30,6 +32,7 @@ class Remind(Cog):
                             inline=False)
         await ctx.send(embed=embed)
 
+    @commands.check(check_if_verified)
     @commands.cooldown(1, 60, type=commands.BucketType.user)
     @commands.command(aliases=["remindme"])
     async def remind(self, ctx, when: str, *, text: str = "something"):
@@ -42,8 +45,6 @@ class Remind(Cog):
         if current_timestamp + 5 > expiry_timestamp:
             msg = await ctx.send(f"{ctx.author.mention}: Minimum "
                                  "remind interval is 5 seconds.")
-            await asyncio.sleep(5)
-            await msg.delete()
             return
 
         expiry_datetime = datetime.utcfromtimestamp(expiry_timestamp)
@@ -61,8 +62,6 @@ class Remind(Cog):
 
         msg = await ctx.send(f"{ctx.author.mention}: I'll remind you in "
                              f"DMs about `{safe_text}` in {duration_text}.")
-        await asyncio.sleep(5)
-        await msg.delete()
 
 
 def setup(bot):

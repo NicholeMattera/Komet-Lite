@@ -3,21 +3,26 @@ import config
 import discord
 from discord.ext import commands
 from discord.ext.commands import Cog
+from helpers.checks import check_if_verified
 
 class Basic(Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.guild_only()
+    @commands.check(check_if_verified)
     @commands.command()
     async def hello(self, ctx):
         """Says hello. Duh."""
         await ctx.send(f"Hello {ctx.author.mention}!")
 
+    @commands.check(check_if_verified)
     @commands.command(aliases=['aboutkosmos'])
     async def about(self, ctx):
         """Shows what kosmos is and what it includes"""
         await ctx.send("Kosmos is a CFW bundle that comes with Atmosphere, Hekate, and some homebrew. You can see all the homebrew that is included here: https://github.com/AtlasNX/Kosmos#featuring")
     
+    @commands.check(check_if_verified)
     @commands.command(aliases=["fat32"])
     async def exfat(self, ctx):
         """Displays a helpful message on why not to use exFAT"""
@@ -35,12 +40,14 @@ class Basic(Cog):
                        embed=embed)
         
     @commands.guild_only()
+    @commands.check(check_if_verified)
     @commands.command()
     async def membercount(self, ctx):
         """Prints the member count of the server."""
         await ctx.send(f"{ctx.guild.name} has "
                        f"{ctx.guild.member_count} members!")
 
+    @commands.check(check_if_verified)
     @commands.command(aliases=["robocopng", "robocop-ng", "komet", "komet-cl"])
     async def robocop(self, ctx):
         """Shows a quick embed with bot info."""
@@ -52,6 +59,7 @@ class Basic(Cog):
 
         await ctx.send(embed=embed)
 
+    @commands.check(check_if_verified)
     @commands.command(aliases=['p', "ddos"])
     async def ping(self, ctx):
         """Shows ping values to discord.

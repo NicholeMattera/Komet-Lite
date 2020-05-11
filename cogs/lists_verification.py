@@ -157,6 +157,7 @@ class ListsVerification(Cog):
 
     # Commands
 
+    @commands.guild_only()
     @commands.check(check_if_staff)
     @commands.command()
     async def reset(self, ctx):
@@ -176,6 +177,7 @@ class ListsVerification(Cog):
         if rules_channel is not None and verification_channel is not None:
             await self.reset_verification_channel(rules_channel, verification_channel)
 
+    @commands.guild_only()
     @commands.check(check_if_staff)
     @commands.command()
     async def verifyall(self, ctx):
@@ -186,8 +188,9 @@ class ListsVerification(Cog):
             if verified_role not in member.roles:
                 await member.add_roles(verified_role)
 
-        await ctx.send('All members verified.')
+        await ctx.send("All members verified.")
 
+    @commands.guild_only()
     @commands.check(check_if_staff)
     @commands.command()
     async def verifiedcount(self, ctx):

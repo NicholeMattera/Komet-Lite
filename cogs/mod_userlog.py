@@ -3,7 +3,7 @@ from discord.ext import commands
 from discord.ext.commands import Cog
 import config
 import json
-from helpers.checks import check_if_staff
+from helpers.checks import check_if_staff, check_if_verified
 from helpers.userlogs import get_userlog, set_userlog, userlog_event_types
 
 
@@ -111,6 +111,7 @@ class ModUserlog(Cog):
         await ctx.send(embed=embed)
 
     @commands.guild_only()
+    @commands.check(check_if_verified)
     @commands.command(aliases=["mywarns"])
     async def myuserlog(self, ctx):
         """Lists your userlog events (warns etc)."""

@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 from discord.ext.commands import Cog
+from helpers.checks import check_if_verified
 import random
 import re
 
@@ -12,6 +13,7 @@ class Uwu(Cog):
     def __init__(self, bot):
         self.bot = bot
 
+    @commands.check(check_if_verified)
     @commands.command(hidden=True, aliases=["owoify"])
     async def uwuify(self, ctx, *, message: str):
         """Tuwns any text given into uwu wanguage (｡♥‿♥｡)"""
