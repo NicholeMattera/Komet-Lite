@@ -263,7 +263,6 @@ class Logs(Cog):
         msg = ""
         log_channel = self.bot.get_channel(config.log_channel)
         if member_before.roles != member_after.roles:
-            return
             # role removal
             role_removal = []
             for index, role in enumerate(member_before.roles):
