@@ -2,7 +2,7 @@ import config
 import discord
 from discord.ext import commands
 from discord.ext.commands import Cog
-from helpers.checks import check_if_verified
+from helpers.checks import check_if_verified_or_dms
 from helpers.userlogs import get_blank_userlog, get_userlog, set_userlog
 import json
 import time
@@ -49,7 +49,7 @@ class ModMail(Cog):
 
     # Commands
 
-    @commands.check(check_if_verified)
+    @commands.check(check_if_verified_or_dms)
     @commands.command(aliases=["creport"])
     async def modmail(self, ctx, *, body: str = ""):
         """Sends a mod mail message"""
@@ -110,7 +110,7 @@ class ModMail(Cog):
 
         await ctx.send(f"{ctx.author.mention} - Message sent.")
 
-    @commands.check(check_if_verified)
+    @commands.check(check_if_verified_or_dms)
     @commands.command(aliases=["solved", "completed"])
     async def resolved(self, ctx):
         """Marks your last mod mail message as resolved"""

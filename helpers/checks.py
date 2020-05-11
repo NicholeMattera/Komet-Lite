@@ -16,3 +16,8 @@ def check_if_verified(ctx):
     if not ctx.guild:
         return False
     return any(r.id == config.verified_role for r in ctx.author.roles)
+
+def check_if_verified_or_dms(ctx):
+    if not ctx.guild:
+        return True
+    return any(r.id == config.verified_role for r in ctx.author.roles)
