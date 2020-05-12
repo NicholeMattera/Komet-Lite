@@ -239,10 +239,6 @@ class ListsVerification(Cog):
         ):
             return
 
-        log_channel_id = getattr(config, "log_channel", 0)
-        rules_channel_id = getattr(config, "rules_channel", 0)
-        verification_channel_id = getattr(config, "verification_channel", 0)
-
         log_channel = self.bot.get_channel(config.log_channel)
         rules_channel = self.bot.get_channel(config.rules_channel)
         verification_channel = self.bot.get_channel(config.verification_channel)
