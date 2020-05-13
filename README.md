@@ -1,6 +1,6 @@
 # Komet-CL (Crash Landing)
 
-Next-gen rewrite of Kurisu/Robocop/Komet bot used by AtlasNX, ReSwitched and Nintendo Homebrew with discord.py rewrite, designed to be relatively clean, consistent and un-bloated.
+Next-gen rewrite of Kurisu/Robocop/Komet bot used by ~~AtlasNX~~, ReSwitched and Nintendo Homebrew with discord.py rewrite, designed to be relatively clean, consistent and un-bloated.
 
 Code is based on https://gitlab.com/ao/dpybotbase and https://github.com/916253/Kurisu-Reswitched.
 
