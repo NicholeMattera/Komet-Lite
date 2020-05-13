@@ -20,18 +20,6 @@ class Mod(Cog):
     @commands.guild_only()
     @commands.check(check_if_bot_manager)
     @commands.command()
-    async def snap(self, ctx):
-        await ctx.send(len(ctx.guild.members))
-        i = 0
-        for member in ctx.guild.members:
-            if len(member.roles) == 1 or (len(member.roles) == 2 and member.roles[1].id == config.verified_role):
-                await member.kick(reason="Snapped")
-        
-        await ctx.send("Finished.")
-
-    @commands.guild_only()
-    @commands.check(check_if_bot_manager)
-    @commands.command()
     async def setguildicon(self, ctx, url):
         """Changes guild icon, bot manager only."""
         img_bytes = await self.bot.aiogetbytes(url)
