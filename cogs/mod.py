@@ -21,6 +21,7 @@ class Mod(Cog):
     @commands.check(check_if_bot_manager)
     @commands.command()
     async def snap(self, ctx):
+        await ctx.send(len(ctx.guild.members))
         for member in ctx.guild.members:
             if len(member.roles) == 0 or (len(member.roles) == 1 and member.roles[0].id == config.verified_role):
                 await ctx.send(str(member))
