@@ -24,14 +24,11 @@ class Mod(Cog):
         await ctx.send(len(ctx.guild.members))
         i = 0
         for member in ctx.guild.members:
-            await ctx.send(str(member))
-            i += 1
-            
-            if i == 10:
-                break
-                
-            if len(member.roles) == 0 or (len(member.roles) == 1 and member.roles[0].id == config.verified_role):
+            if len(member.roles) == 1 or (len(member.roles) == 2 and member.roles[1].id == config.verified_role):
                 await ctx.send(str(member))
+                i += 1
+                if i == 5:
+                    break
                 # await member.kick(reason="Snapped")
         
         await ctx.send("Finished.")
