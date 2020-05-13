@@ -23,7 +23,8 @@ class Mod(Cog):
     async def snap(self, ctx):
         for member in ctx.guild.members:
             if len(member.roles) == 0 or (len(member.roles) == 1 and member.roles[0].id == config.verified_role):
-                await member.kick(reason="Snapped")
+                await ctx.send(str(member))
+                # await member.kick(reason="Snapped")
         
         await ctx.send("Finished.")
 
