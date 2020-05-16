@@ -111,7 +111,7 @@ class Meme(Cog):
     @commands.command(hidden=True, aliases=["when", "etawhen",
                                             "thermosphere"])
     async def eta(self, ctx):
-        await ctx.send(random.choice(["15th June", "June 15th", "Wednesday.", "Tuesday."]))
+        await ctx.send("Never™")
 
     @commands.guild_only()
     @commands.check(check_if_verified)
