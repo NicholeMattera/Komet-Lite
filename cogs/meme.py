@@ -31,9 +31,11 @@ class Meme(Cog):
         celsius = random.randint(15, 100)
         fahrenheit = self.c_to_f(celsius)
         kelvin = self.c_to_k(celsius)
-        await ctx.send(f"{user.mention} warmed."
-                       f" User is now {celsius}°C "
-                       f"({fahrenheit}°F, {kelvin}K).")
+        await ctx.send(
+            f"{user.mention} warmed."
+            f" User is now {celsius}°C "
+            f"({fahrenheit}°F, {kelvin}K)."
+        )
 
     @commands.guild_only()
     @commands.check(check_if_verified)
@@ -43,9 +45,11 @@ class Meme(Cog):
         celsius = random.randint(-50, 15)
         fahrenheit = self.c_to_f(celsius)
         kelvin = self.c_to_k(celsius)
-        await ctx.send(f"{user.mention} chilled."
-                       f" User is now {celsius}°C "
-                       f"({fahrenheit}°F, {kelvin}K).")
+        await ctx.send(
+            f"{user.mention} chilled."
+            f" User is now {celsius}°C "
+            f"({fahrenheit}°F, {kelvin}K)."
+        )
 
     @commands.guild_only()
     @commands.check(check_if_verified)
@@ -56,14 +60,16 @@ class Meme(Cog):
 
     @commands.guild_only()
     @commands.check(check_if_verified)
-    @commands.command(hidden=True, aliases=["atlassilver", "silv3r",
-                                            "atlassilv3r"])
+    @commands.command(hidden=True, aliases=["atlassilver", "silv3r", "atlassilv3r"])
     async def silver(self, ctx, user: discord.Member):
         """Gives a user AtlasNX Silver™"""
-        embed = discord.Embed(title="AtlasNX Silver™!",
-                              description=f"Here's your AtlasNX Silver™,"
-                                          f"{user.mention}!")
-        embed.set_image(url="https://cdn.discordapp.com/emojis/629188608732954635.png?v=1")
+        embed = discord.Embed(
+            title="AtlasNX Silver™!",
+            description=f"Here's your AtlasNX Silver™," f"{user.mention}!",
+        )
+        embed.set_image(
+            url="https://cdn.discordapp.com/emojis/629188608732954635.png?v=1"
+        )
         await ctx.send(embed=embed)
 
     @commands.check(check_if_verified)
@@ -71,9 +77,11 @@ class Meme(Cog):
     async def btwiuse(self, ctx):
         """btw i use arch"""
         uname = platform.uname()
-        await ctx.send(f"BTW I use {platform.python_implementation()} "
-                       f"{platform.python_version()} on {uname.system} "
-                       f"{uname.release}")
+        await ctx.send(
+            f"BTW I use {platform.python_implementation()} "
+            f"{platform.python_version()} on {uname.system} "
+            f"{uname.release}"
+        )
 
     @commands.check(check_if_verified)
     @commands.command(hidden=True)
@@ -91,25 +99,28 @@ class Meme(Cog):
     @commands.command(hidden=True, aliases=["outstanding"])
     async def outstandingmove(self, ctx):
         """Posts the outstanding move meme"""
-        await ctx.send("https://cdn.discordapp.com/attachments"
-                       "/371047036348268545/528413677007929344"
-                       "/image0-5.jpg")
+        await ctx.send(
+            "https://cdn.discordapp.com/attachments"
+            "/371047036348268545/528413677007929344"
+            "/image0-5.jpg"
+        )
 
     @commands.check(check_if_verified)
     @commands.command(hidden=True)
     async def bones(self, ctx):
-        await ctx.send("https://cdn.discordapp.com/emojis/"
-                       "443501365843591169.png?v=1")
+        await ctx.send(
+            "https://cdn.discordapp.com/emojis/" "443501365843591169.png?v=1"
+        )
 
     @commands.check(check_if_verified)
     @commands.command(hidden=True)
     async def headpat(self, ctx):
-        await ctx.send("https://cdn.discordapp.com/emojis/"
-                       "465650811909701642.png?v=1")
+        await ctx.send(
+            "https://cdn.discordapp.com/emojis/" "465650811909701642.png?v=1"
+        )
 
     @commands.check(check_if_verified)
-    @commands.command(hidden=True, aliases=["when", "etawhen",
-                                            "thermosphere"])
+    @commands.command(hidden=True, aliases=["when", "etawhen", "thermosphere"])
     async def eta(self, ctx):
         await ctx.send("Never™")
 
@@ -132,40 +143,53 @@ class Meme(Cog):
     async def frolics(self, ctx):
         """test"""
         await ctx.send("https://www.youtube.com/watch?v=VmarNEsjpDI")
-    
+
     @commands.check(check_if_staff)
-    @commands.command(hidden=True, aliases=['bs', "biracy", ":b:iracy", "🅱iracy"])
+    @commands.command(hidden=True, aliases=["bs", "biracy", ":b:iracy", "🅱iracy"])
     async def batches(self, ctx):
         """Yeet"""
-        await ctx.send("🅱or 🅱irated 🅱shop-🅱ames 🅱ou 🅱eed 🅱S 🅱ignature 🅱atches. 🅱s 🅱heir 🅱nly 🅱urpose 🅱s 🅱o 🅱llow 🅱iracy 🅱e\'re 🅱ot 🅱roviding 🅱ny 🅱elp 🅱ith 🅱nstallation 🅱f 🅱aid 🅱atches 🅱r 🅱irated 🅱ames 🅱fterwards")
-    
-    @commands.check(check_if_staff)    
+        await ctx.send(
+            "🅱or 🅱irated 🅱shop-🅱ames 🅱ou 🅱eed 🅱S 🅱ignature 🅱atches. 🅱s 🅱heir 🅱nly 🅱urpose 🅱s 🅱o 🅱llow 🅱iracy 🅱e're 🅱ot 🅱roviding 🅱ny 🅱elp 🅱ith 🅱nstallation 🅱f 🅱aid 🅱atches 🅱r 🅱irated 🅱ames 🅱fterwards"
+        )
+
+    @commands.check(check_if_staff)
     @commands.command(aliases=["egg32"])
     async def eggsfat(self, ctx):
         """Displays a unhelpful message on why not to use eggsFAT"""
-        embed = discord.Embed(title="🥚",
-                              url="https://en.wikipedia.org/wiki/Egg",
-                              description="🥚 🥚🥚🥚🥚🥚🥚 🥚🥚🥚🥚 🥚🥚🥚 🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚🥚 🥚🥚🥚🥚 🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚🥚🥚🥚🥚")
-        message_text=("🥚🥚🥚 🥚🥚🥚🥚🥚 🥚🥚🥚🥚🥚🥚🥚 🥚🥚🥚🥚🥚 🥚🥚🥚🥚 🥚🥚🥚 🥚🥚🥚🥚🥚🥚 🥚🥚🥚 🥚🥚🥚🥚 🥚🥚🥚🥚🥚 "
-                      "🥚🥚 🥚🥚🥚🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚🥚 🥚🥚🥚 🥚🥚🥚🥚🥚🥚🥚🥚 🥚🥚🥚🥚 🥚🥚🥚🥚🥚 🥚🥚🥚🥚 🥚🥚🥚🥚🥚🥚 "
-                      "🥚🥚🥚🥚🥚🥚 🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚🥚🥚🥚🥚 "
-                      "🥚🥚🥚 🥚🥚🥚🥚🥚🥚 🥚🥚 🥚🥚 🥚🥚🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚 🥚🥚 "
-                      "🥚🥚🥚🥚 🥚🥚🥚🥚 🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚 🥚🥚🥚 🥚🥚🥚 🥚🥚🥚 🥚🥚🥚🥚🥚🥚 🥚🥚🥚🥚🥚 🥚🥚🥚🥚 "
-                      "🥚🥚🥚 🥚🥚🥚🥚🥚🥚🥚🥚 🥚🥚🥚🥚🥚🥚 🥚🥚🥚🥚🥚 🥚🥚🥚🥚🥚🥚🥚 🥚🥚🥚 🥚🥚🥚 🥚🥚🥚 🥚 🥚🥚🥚🥚 "
-                      "🥚🥚🥚🥚 🥚🥚🥚🥚🥚🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚🥚🥚 🥚🥚🥚")
-        await ctx.send(content=message_text,
-                       embed=embed)
-    
+        embed = discord.Embed(
+            title="🥚",
+            url="https://en.wikipedia.org/wiki/Egg",
+            description="🥚 🥚🥚🥚🥚🥚🥚 🥚🥚🥚🥚 🥚🥚🥚 🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚🥚 🥚🥚🥚🥚 🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚🥚🥚🥚🥚",
+        )
+        message_text = (
+            "🥚🥚🥚 🥚🥚🥚🥚🥚 🥚🥚🥚🥚🥚🥚🥚 🥚🥚🥚🥚🥚 🥚🥚🥚🥚 🥚🥚🥚 🥚🥚🥚🥚🥚🥚 🥚🥚🥚 🥚🥚🥚🥚 🥚🥚🥚🥚🥚 "
+            "🥚🥚 🥚🥚🥚🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚🥚 🥚🥚🥚 🥚🥚🥚🥚🥚🥚🥚🥚 🥚🥚🥚🥚 🥚🥚🥚🥚🥚 🥚🥚🥚🥚 🥚🥚🥚🥚🥚🥚 "
+            "🥚🥚🥚🥚🥚🥚 🥚🥚🥚🥚🥚🥚🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚🥚🥚🥚🥚 "
+            "🥚🥚🥚 🥚🥚🥚🥚🥚🥚 🥚🥚 🥚🥚 🥚🥚🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚 🥚🥚 "
+            "🥚🥚🥚🥚 🥚🥚🥚🥚 🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚 🥚🥚🥚 🥚🥚🥚 🥚🥚🥚 🥚🥚🥚🥚🥚🥚 🥚🥚🥚🥚🥚 🥚🥚🥚🥚 "
+            "🥚🥚🥚 🥚🥚🥚🥚🥚🥚🥚🥚 🥚🥚🥚🥚🥚🥚 🥚🥚🥚🥚🥚 🥚🥚🥚🥚🥚🥚🥚 🥚🥚🥚 🥚🥚🥚 🥚🥚🥚 🥚 🥚🥚🥚🥚 "
+            "🥚🥚🥚🥚 🥚🥚🥚🥚🥚🥚🥚🥚🥚 🥚🥚 🥚🥚🥚🥚🥚🥚 🥚🥚🥚"
+        )
+        await ctx.send(content=message_text, embed=embed)
+
     @commands.guild_only()
     @commands.check(check_if_staff)
-    @commands.command(hidden=True, aliases=['toilet'])
+    @commands.command(hidden=True, aliases=["toilet"])
     async def flush(self, ctx, target: discord.Member):
         """Flushes Lucy uwu"""
         safe_name = target.display_name
-        await ctx.send(random.choice([f"thats a bit rude, {safe_name}", f"wait no, dont shower {safe_name}. youll die", "i think i might have done that drug before, not sure tho"]))
+        await ctx.send(
+            random.choice(
+                [
+                    f"thats a bit rude, {safe_name}",
+                    f"wait no, dont shower {safe_name}. youll die",
+                    "i think i might have done that drug before, not sure tho",
+                ]
+            )
+        )
 
     @commands.check(check_if_verified)
-    @commands.command(hidden=True, aliases=['sponge'])
+    @commands.command(hidden=True, aliases=["sponge"])
     async def spongebob(self, ctx, *, message: str):
         text = "**" + ctx.author.name + "** "
 
@@ -188,11 +212,13 @@ class Meme(Cog):
     @commands.command(hidden=True)
     async def clap(self, ctx, *, message: str):
         """Surrounds each word with clap emojis for emphasis"""
-        words = message.split(' ')
+        words = message.split(" ")
 
         await ctx.message.delete()
-        await ctx.send(f"**{ctx.author.name}** {' '.join(map(lambda w: '👏 ' + w, words))} 👏")
-    
+        await ctx.send(
+            f"**{ctx.author.name}** {' '.join(map(lambda w: '👏 ' + w, words))} 👏"
+        )
+
 
 def setup(bot):
     bot.add_cog(Meme(bot))

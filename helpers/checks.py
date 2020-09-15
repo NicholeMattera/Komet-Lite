@@ -12,12 +12,10 @@ def check_if_bot_manager(ctx):
         return False
     return any(r.id == config.bot_manager_role_id for r in ctx.author.roles)
 
+
 def check_if_verified(ctx):
-    if not ctx.guild:
-        return False
-    return any(r.id == config.verified_role for r in ctx.author.roles)
+    return True
+
 
 def check_if_verified_or_dms(ctx):
-    if not ctx.guild:
-        return True
-    return any(r.id == config.verified_role for r in ctx.author.roles)
+    return True

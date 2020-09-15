@@ -209,22 +209,6 @@ class Lists(Cog):
                 mod_cog, ctx=ctx, target=target, reason=f"Rule {number} - {reason}"
             )
 
-    @commands.guild_only()
-    @commands.check(check_if_verified)
-    @commands.command(aliases=["faq"])
-    async def support(self, ctx, number: int):
-        """Link to a specific list item in #support-faq"""
-        channel = ctx.guild.get_channel(config.support_faq_channel)
-        await self.link_list_item(ctx, channel, number)
-
-    @commands.guild_only()
-    @commands.check(check_if_verified)
-    @commands.command(aliases=["es", "fs", "acid", "piracy"])
-    async def patches(self, ctx):
-        """Link to the list item in #support-faq about patches"""
-        channel = ctx.guild.get_channel(config.support_faq_channel)
-        await self.link_list_item(ctx, channel, 1)
-
     # Listeners
 
     @Cog.listener()
@@ -324,7 +308,7 @@ class Lists(Cog):
             await message.delete()
             return
 
-        log_channel = self.bot.get_channel(config.log_channel)
+        botlog_channel = self.bot.get_channel(config.botlog_channel)
         channel = message.channel
         content = message.content
         user = message.author
@@ -363,7 +347,7 @@ class Lists(Cog):
             for reaction in reactions:
                 await reaction.remove(user)
 
-            await log_channel.send(
+            await botlog_channel.send(
                 self.create_log_message("💬", "List item added:", user, channel)
             )
             return
@@ -377,14 +361,14 @@ class Lists(Cog):
             await targeted_message.edit(content=content)
             await targeted_reaction.remove(user)
 
-            await log_channel.send(
+            await botlog_channel.send(
                 self.create_log_message("📝", "List item edited:", user, channel)
             )
 
         elif self.is_delete(targeted_reaction):
             await targeted_message.delete()
 
-            await log_channel.send(
+            await botlog_channel.send(
                 self.create_log_message(
                     "❌", "List item deleted:", user, channel, content
                 )
@@ -403,7 +387,7 @@ class Lists(Cog):
             for message in messages:
                 await self.send_cached_message(channel, message)
 
-            await log_channel.send(
+            await botlog_channel.send(
                 self.create_log_message(
                     "♻", "List item recycled:", user, channel, content
                 )
@@ -430,7 +414,7 @@ class Lists(Cog):
             for message in messages:
                 await self.send_cached_message(channel, message)
 
-            await log_channel.send(
+            await botlog_channel.send(
                 self.create_log_message("💬", "List item added:", user, channel)
             )
 
@@ -457,7 +441,7 @@ class Lists(Cog):
             for message in messages:
                 await self.send_cached_message(channel, message)
 
-            await log_channel.send(
+            await botlog_channel.send(
                 self.create_log_message("💬", "List item added:", user, channel)
             )
 

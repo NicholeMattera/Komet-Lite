@@ -5,6 +5,7 @@ from helpers.checks import check_if_verified
 import random
 import re
 
+
 class Uwu(Cog):
     """
     UwU (つ✧ω✧)つ
