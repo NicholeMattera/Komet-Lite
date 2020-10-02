@@ -219,6 +219,15 @@ class Meme(Cog):
             f"**{ctx.author.name}** {' '.join(map(lambda w: '👏 ' + w, words))} 👏"
         )
 
+    @commands.check(check_if_verified)
+    @commands.command(hidden=True, aliases=["crabs"])
+    async def crab(self, ctx, *, message: str):
+        """Surrounds your message with crabs for emphasis"""
+        words = message.split(" ")
+
+        await ctx.message.delete()
+        await ctx.send(f"**{ctx.author.name}** 🦀🦀🦀 {message} 🦀🦀🦀")
+
 
 def setup(bot):
     bot.add_cog(Meme(bot))
