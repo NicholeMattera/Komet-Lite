@@ -29,7 +29,9 @@ class Admin(Cog):
     @commands.check(check_if_bot_manager)
     @commands.command()
     async def pull(self, ctx, auto=False):
-        await ctx.send("Fuck off. This doesn't belong in production code! Bother Nichole instead.")
+        await ctx.send(
+            "Fuck off. This doesn't belong in production code! Bother Nichole instead."
+        )
 
     @commands.guild_only()
     @commands.check(check_if_bot_manager)
@@ -77,6 +79,13 @@ class Admin(Cog):
             return
         self.bot.log.info(f"Reloaded ext {ext}")
         await ctx.send(f":white_check_mark: `{ext}` successfully reloaded.")
+
+    @commands.guild_only()
+    @commands.check(check_if_bot_manager)
+    @commands.command()
+    async def speak(self, ctx, channel: discord.TextChannel, *, the_text: str):
+        """Repeats a given text in a given channel, staff only."""
+        await channel.send(the_text)
 
 
 def setup(bot):

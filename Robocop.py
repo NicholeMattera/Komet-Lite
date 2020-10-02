@@ -38,8 +38,12 @@ intents = discord.Intents.default()
 intents.typing = False
 intents.members = True
 
-bot = commands.Bot(command_prefix=get_prefix, pm_help=True,
-                   description=config.bot_description, intents=intents)
+bot = commands.Bot(
+    command_prefix=get_prefix,
+    pm_help=True,
+    description=config.bot_description,
+    intents=intents,
+)
 
 bot.log = log
 

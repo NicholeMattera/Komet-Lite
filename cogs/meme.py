@@ -144,7 +144,7 @@ class Meme(Cog):
         """test"""
         await ctx.send("https://www.youtube.com/watch?v=VmarNEsjpDI")
 
-    @commands.check(check_if_staff)
+    @commands.check(check_if_verified)
     @commands.command(hidden=True, aliases=["bs", "biracy", ":b:iracy", "🅱iracy"])
     async def batches(self, ctx):
         """Yeet"""
@@ -152,7 +152,7 @@ class Meme(Cog):
             "🅱or 🅱irated 🅱shop-🅱ames 🅱ou 🅱eed 🅱S 🅱ignature 🅱atches. 🅱s 🅱heir 🅱nly 🅱urpose 🅱s 🅱o 🅱llow 🅱iracy 🅱e're 🅱ot 🅱roviding 🅱ny 🅱elp 🅱ith 🅱nstallation 🅱f 🅱aid 🅱atches 🅱r 🅱irated 🅱ames 🅱fterwards"
         )
 
-    @commands.check(check_if_staff)
+    @commands.check(check_if_verified)
     @commands.command(aliases=["egg32"])
     async def eggsfat(self, ctx):
         """Displays a unhelpful message on why not to use eggsFAT"""
@@ -173,7 +173,7 @@ class Meme(Cog):
         await ctx.send(content=message_text, embed=embed)
 
     @commands.guild_only()
-    @commands.check(check_if_staff)
+    @commands.check(check_if_verified)
     @commands.command(hidden=True, aliases=["toilet"])
     async def flush(self, ctx, target: discord.Member):
         """Flushes Lucy uwu"""

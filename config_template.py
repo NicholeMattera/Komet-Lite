@@ -27,10 +27,10 @@ staff_role_ids = [
 botlog_channel = 123456789098765432
 
 # Rules channel used by the List Cog
-rules_channel = 123456789098765432 
+rules_channel = 123456789098765432
 
 # Used for uploading raw text files for list editing.
-list_files_channel = 123456789098765432  
+list_files_channel = 123456789098765432
 
 # Channels that are lists that are controlled by the lists cog.
 list_channels = [123456789098765432]
